@@ -1,4 +1,10 @@
 from tkinter import *
+from tkinter import filedialog
+import requests
+import lxml
+from lxml import html
+import pandas as pd
+
 import options
 
 class Window(Frame):
@@ -13,36 +19,64 @@ class Window(Frame):
         self.master.title("The Passive Investor")
         self.pack(fill=BOTH, expand=1)
         
-        Button(self, text="Get", command=self.get_data).grid(row=10,column=1)
+        Button(self, text="Get Data", command=self.get_data).grid(row=11,column=2)
+        Button(self, text="Manual Ticker selection (Excel)", command=self.chooseInput).grid(row=10,column=1)
 
-        self.Ticker = StringVar()
-        self.entry_widget = Entry(self, textvariable=self.Ticker).grid(row=10,column=2)
+        self.screener = StringVar()
+        Entry(self, textvariable=self.screener).grid(row=12,column=1)
+
+        # self.tickerList = Variable()
+        # self.tickerListEntry = Entry(self, textvariable = self.tickerList).grid(row=10,column=3)
+
+    def chooseInput(self):
+        self.tickerList = filedialog.askopenfilename()
+        self.ticker = pd.read_excel(self.tickerList)['Tickers'].to_list()
         
     def get_data(self):
         import yfinance as yf
-        import options
+        import pandas as pd
 
-        ticker = self.Ticker.get()
+        def symbolCollector(url="https://finance.yahoo.com/etfs"):
+            page = requests.get(url)
+            tree = html.fromstring(page.content)
+            table = tree.xpath('//table')
+            self.ticker = pd.read_html(lxml.etree.tostring(table[0], method='html'))[0]['Symbol'].to_list()
 
-        if ticker:
-            print(1)
-            tickerData = yf.Ticker(ticker)
-            print(tickerData.balance_sheet)
-        else:
-            tickerData = options.tickerData
+        if self.screener.get():
+            url = self.screener.get()
+            symbolCollector(url)
 
         intervalChoice = options.interval[self.intervalChoice.get()]
         periodChoice = options.period[self.periodChoice.get()]
 
         if self.historicChoice.get() == 1:
-            print(tickerData.history(period=periodChoice, interval=intervalChoice))
+            print(yf.download(self.ticker, period=periodChoice, interval=intervalChoice))
 
-        for choice in self.data:
-            if self.data[choice].get() == 1:
-                if choice in options.mainVariables: 
-                    print(options.mainVariables[choice])
-                elif choice in options.extraVariables:
-                    print(options.extraVariables[choice])
+        if type(self.ticker) == list:
+            for symbol in self.ticker:
+                tickerData = yf.Ticker(symbol)
+                try:
+                    mainVariables       =  {'Financials'       : tickerData.financials,
+                                            'Balance Sheet'    : tickerData.balance_sheet,
+                                            'Cashflow'         : tickerData.cashflow,
+                                            'Earnings'         : tickerData.earnings,
+                                            'Dividends'        : tickerData.dividends,
+                                            'Splits'           : tickerData.splits}
+
+                    extraVariables      =  {'Sustainability'   : tickerData.sustainability,
+                                            'Recommendations'  : tickerData.recommendations,
+                                            'Actions'          : tickerData.actions,
+                                            'Event Calendar'   : tickerData.calendar,
+                                            'Options'          : tickerData.options}
+
+                    for choice in self.data:
+                        if self.data[choice].get() == 1:
+                            if choice in mainVariables: 
+                                print(mainVariables[choice])
+                            elif choice in extraVariables:
+                                print(extraVariables[choice])
+                except:
+                    continue
         
     def options(self):
 
@@ -122,6 +156,6 @@ class Window(Frame):
             counter += 1
                     
 root = Tk()
-root.geometry("375x250")
+root.geometry("500x400")
 app = Window(root)
 root.mainloop()

@@ -1,8 +1,3 @@
-import yfinance as yf
-import program
-
-tickerData = yf.Ticker(program.ticker)
-
 period          =   {'1 Day'            : '1d',
                      '5 Days'           : '5d',
                      '1 Month'          : '1mo',
@@ -30,15 +25,15 @@ interval        =   {'1 Minute'         : '1m',
                      '1 Month'          : '1mo',
                      '3 Months'         : '3mo'}
 
-mainVariables   =   {'Financials'       : tickerData.financials,
-                     'Balance Sheet'    : tickerData.balance_sheet,
-                     'Cashflow'         : tickerData.cashflow,
-                     'Earnings'         : tickerData.earnings,
-                     'Dividends'        : tickerData.dividends,
-                     'Splits'           : tickerData.splits}
+mainVariables   =   ['Financials',
+                     'Balance Sheet',
+                     'Cashflow',
+                     'Earnings',
+                     'Dividends',
+                     'Splits']
 
-extraVariables  =   {'Sustainability'   : tickerData.sustainability,
-                     'Recommendations'  : tickerData.recommendations,
-                     'Actions'          : tickerData.actions,
-                     'Event Calendar'   : tickerData.calendar,
-                     'Options'          : tickerData.options}
+extraVariables  =   ['Sustainability',
+                     'Recommendations',
+                     'Actions',
+                     'Event Calendar',
+                     'Options']
