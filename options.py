@@ -1,5 +1,7 @@
 import yfinance as yf
-tickerData = yf.Ticker("TSLA")
+import program
+
+tickerData = yf.Ticker(program.ticker)
 
 period          =   {'1 Day'            : '1d',
                      '5 Days'           : '5d',

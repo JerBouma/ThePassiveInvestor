@@ -14,12 +14,22 @@ class Window(Frame):
         self.pack(fill=BOTH, expand=1)
         
         Button(self, text="Get", command=self.get_data).grid(row=10,column=1)
+
+        self.Ticker = StringVar()
+        self.entry_widget = Entry(self, textvariable=self.Ticker).grid(row=10,column=2)
         
     def get_data(self):
         import yfinance as yf
         import options
 
-        tickerData = options.tickerData
+        ticker = self.Ticker.get()
+
+        if ticker:
+            print(1)
+            tickerData = yf.Ticker(ticker)
+            print(tickerData.balance_sheet)
+        else:
+            tickerData = options.tickerData
 
         intervalChoice = options.interval[self.intervalChoice.get()]
         periodChoice = options.period[self.periodChoice.get()]
