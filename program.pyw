@@ -19,24 +19,23 @@ class Window(Frame):
         self.master.title("The Passive Investor")
         self.pack(fill=BOTH, expand=1)
         
-        Button(self, text="Get Data", command=self.get_data).grid(row=11,column=2)
+        Button(self, text="Get Data", command=self.getData).grid(row=11,column=2)
         Button(self, text="Manual Ticker selection (Excel)", command=self.chooseInput).grid(row=10,column=1)
 
         self.screener = StringVar()
         Entry(self, textvariable=self.screener).grid(row=12,column=1)
 
-        # self.tickerList = Variable()
-        # self.tickerListEntry = Entry(self, textvariable = self.tickerList).grid(row=10,column=3)
-
     def chooseInput(self):
         self.tickerList = filedialog.askopenfilename()
         self.ticker = pd.read_excel(self.tickerList)['Tickers'].to_list()
         
-    def get_data(self):
+    def getData(self):
         import yfinance as yf
         import pandas as pd
+        from options import mainVariables, extraVariables
+        from output import excelOutput
 
-        def symbolCollector(url="https://finance.yahoo.com/etfs"):
+        def symbolCollector(url):
             page = requests.get(url)
             tree = html.fromstring(page.content)
             table = tree.xpath('//table')
@@ -53,28 +52,29 @@ class Window(Frame):
             print(yf.download(self.ticker, period=periodChoice, interval=intervalChoice))
 
         if type(self.ticker) == list:
+            excelData = {}
             for symbol in self.ticker:
                 tickerData = yf.Ticker(symbol)
                 try:
-                    mainVariables       =  {'Financials'       : tickerData.financials,
-                                            'Balance Sheet'    : tickerData.balance_sheet,
-                                            'Cashflow'         : tickerData.cashflow,
-                                            'Earnings'         : tickerData.earnings,
-                                            'Dividends'        : tickerData.dividends,
-                                            'Splits'           : tickerData.splits}
+                    mainVariablesOptions    =  {mainVariables[0]    : tickerData.financials,
+                                                mainVariables[1]    : tickerData.balance_sheet,
+                                                mainVariables[2]    : tickerData.cashflow,
+                                                mainVariables[3]    : tickerData.earnings,
+                                                mainVariables[4]    : tickerData.dividends,
+                                                mainVariables[5]    : tickerData.splits}
 
-                    extraVariables      =  {'Sustainability'   : tickerData.sustainability,
-                                            'Recommendations'  : tickerData.recommendations,
-                                            'Actions'          : tickerData.actions,
-                                            'Event Calendar'   : tickerData.calendar,
-                                            'Options'          : tickerData.options}
+                    extraVariablesOptions   =  {extraVariables[0]   : tickerData.sustainability,
+                                                extraVariables[1]   : tickerData.recommendations,
+                                                extraVariables[2]   : tickerData.actions,
+                                                extraVariables[3]   : tickerData.calendar,
+                                                extraVariables[4]   : tickerData.options}
 
                     for choice in self.data:
                         if self.data[choice].get() == 1:
                             if choice in mainVariables: 
-                                print(mainVariables[choice])
+                                excelData[symbol,choice] = mainVariablesOptions[choice]
                             elif choice in extraVariables:
-                                print(extraVariables[choice])
+                                excelData[symbol,choice] = extraVariablesOptions[choice]
                 except:
                     continue
         
