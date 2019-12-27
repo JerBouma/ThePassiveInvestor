@@ -1,6 +1,6 @@
 from tkinter import *
 from utils import symbolCollector
-from report.excelReport import excelWriter
+from report import excelReport
 # from tkinter import filedialog
 
 class Window(Frame):
@@ -35,7 +35,7 @@ class Window(Frame):
         filename = self.filenameEntry.get()
 
         tickers = symbolCollector(screenerURL)
-        excelWriter(self, tickers, filename)
+        excelReport.excelWriter(self, tickers, filename)
 
 root = Tk()
 app = Window(root)
