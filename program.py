@@ -21,11 +21,11 @@ class Window(Frame):
         
         self.filenameEntry = StringVar()
         filenameEntry = Entry(self, textvariable=self.filenameEntry, width=100)
-        filenameEntry.grid(row=1, column=2, sticky=W, pady=10)
+        filenameEntry.grid(row=1, column=2, sticky=W, pady=10, padx=10)
 
         self.screenerEntry = StringVar()
         screenerEntry = Entry(self, textvariable=self.screenerEntry, width=100)
-        screenerEntry.grid(row=2, column=2, sticky=W, pady=10)
+        screenerEntry.grid(row=2, column=2, sticky=W, pady=10, padx=10)
 
         excelReportButton = Button(self, text="Create Report", command=self.generateReport)
         excelReportButton.grid(row=3,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)

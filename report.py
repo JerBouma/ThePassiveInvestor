@@ -1,8 +1,4 @@
-import requests
-import lxml
-from lxml import html
 import pandas as pd
-from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
@@ -11,15 +7,9 @@ from openpyxl.chart import Reference
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.chart.axis import DateAxis
 from utils import *
-# from utils import dataPlacer
-# from utils import imagePlacer
-# from utils import graphPlacer
-# from utils import defaultKeyStatisticsChoices
-# from utils import defaultsummaryDetailChoices
 from yfinance.utils import get_json 
 import yfinance as yf
 from datetime import datetime
-
 
 class excelReport:
 
@@ -88,6 +78,7 @@ class excelReport:
             minCol += 1
             maxCol += 1
 
+        wb.remove_sheet('Sheet')
         wb.save(filename)
 
     def collectData(self, ticker):
