@@ -11,9 +11,7 @@ import threading
 # - Add manual entering tickers (?)
 # - Check all code!
 # - Check how to transport to a valid exe
-# - Check layout
 # - Convert image urls to urls from GitHub repo
-# - Prevent TKinter from hanging
 
 background = '#e8e8e8'
 
@@ -72,7 +70,11 @@ class Window(Frame):
 
     def generateReport(self):
         screenerURL = self.screenerEntry.get()
-        filename = self.filenameEntry.get()
+
+        if filename.get()[-5:] == '.xlsx':
+            filename = self.filenameEntry.get()
+        else:
+            filename = self.filenameEntry.get() + '.xlsx'
 
         progress = Label(self, text="Collecting tickers..",bg='#4a00a0',fg='white')
         progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)

@@ -73,12 +73,12 @@ def graphPlacer(ticker,stockSheet,stockData,
     cats = Reference(stockSheet, min_col=1, min_row=3, max_col=1, max_row=len(stockData))
             
     chart = LineChart()
-    chart.title = ticker
+    chart.title = None
     chart.legend = None
     chart.y_axis.title = "Stock Price"
     chart.y_axis.crossAx = 500
-    chart.x_axis = DateAxis(crossAx=100)
-    chart.x_axis.number_format = 'mm/yyyy'
+    chart.x_axis = DateAxis()
+    chart.x_axis.number_format = 'yyyy'
     chart.x_axis.title = "Date"
 
     chart.add_data(data)
