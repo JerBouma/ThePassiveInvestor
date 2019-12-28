@@ -15,7 +15,7 @@ import threading
 # - Convert image urls to urls from GitHub repo
 # - Prevent TKinter from hanging
 
-background = 'white'
+background = '#e8e8e8'
 
 class Window(Frame):
     

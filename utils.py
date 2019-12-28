@@ -84,7 +84,7 @@ def graphPlacer(ticker,stockSheet,stockData,
     chart.add_data(data)
     chart.set_categories(cats)
 
-    sheet.add_chart(chart, 'E18')
+    sheet.add_chart(chart, 'E4')
 
 programImageURL = 'https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor/master/Images/ThePassiveInvestorPNG.png'
 
@@ -101,3 +101,12 @@ defaultKeyStatisticsChoices =  ['fundInceptionDate',
 defaultsummaryDetailChoices =  ['currency',
                                 'navPrice',
                                 'previousClose']
+
+emptyRiskStatistics         = { "year"              : 0,
+                                "alpha"             : 0,
+                                "beta"	            : 0,
+                                "meanAnnualReturn"	: 0,
+                                "rSquared"          : 0,
+                                "stdDev"            : 0,
+                                "sharpeRatio"       : 0,
+                                "treynorRatio"      : 0}

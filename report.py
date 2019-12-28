@@ -21,10 +21,10 @@ class excelReport:
 
         for row in dataframe_to_rows(stockData, index=True, header=True):
             stockSheet.append(row)
-    
-        minCol = 1
-        minRow = 3
-        maxCol = 1
+        stockSheet.column_dimensions['A'].width = len(str(stockData.index[0]))
+        stockSheet.sheet_view.showGridLines = False
+
+        minCol,minRow,maxCol = 1, 3, 1
 
         for ticker in tickers:
             progress = Label(self, text="Creating report for " + ticker,bg='#4a00a0',fg='white')
@@ -40,49 +40,65 @@ class excelReport:
             sheet.sheet_view.showGridLines = False
 
             sheet['B2'].value = self.tickerName
-            sheet['B2'].font = Font(bold=True)
-            sheet['B2'].alignment = Alignment(horizontal='center')
-            sheet.merge_cells('B2:N2')
+            sheet['B2'].font = Font(bold=True, size=15)
+            sheet['B2'].alignment = Alignment(horizontal='left')
+            sheet.merge_cells('B2:M2')
 
             sheet['B3'].value = self.businessSummary
-            sheet['B3'].alignment = Alignment(wrap_text=True,vertical='center', horizontal='center')
-            sheet.merge_cells('B3:N3')
+            sheet['B3'].alignment = Alignment(wrap_text=True,vertical='center', horizontal='left')
+            sheet.merge_cells('B3:M3')
             sheet.row_dimensions[3].height = 100
 
-            sheet['B5'].value = "Sector Holdings"
-            sheet['B5'].font = Font(bold=True)
+            sheet['B4'].value = "Sector Holdings"
+            sheet['B4'].font = Font(bold=True)
 
-            sheet['E5'].value = "Company Holdings"
-            sheet['E5'].font = Font(bold=True)
+            sheet['B17'].value = "Top Company Holdings"
+            sheet['B17'].font = Font(bold=True)
 
-            sheet['H5'].value = "Risk Statistics"
-            sheet['H5'].font = Font(bold=True)
-            sheet['H5'].alignment = Alignment(horizontal='center')
-            sheet.merge_cells('H5:M5')
+            sheet['E19'].value = "Risk Statistics"
+            sheet['E19'].font = Font(bold=True)
+            sheet['E19'].alignment = Alignment(horizontal='center')
+            sheet.merge_cells('E19:J19')
 
-            sheet['L18'].value = "Annual Returns"
-            sheet['L18'].font = Font(bold=True)
+            sheet['L21'].value = "Last Five Annual Returns"
+            sheet['L21'].font = Font(bold=True)
 
-            sheet['B18'].value = 'Key Characteristics'
-            sheet['B18'].font = Font(bold=True)
+            sheet['L4'].value = 'Key Characteristics'
+            sheet['L4'].font = Font(bold=True)
 
-            dataPlacer(self.sectorHoldings,sheet,6,2, 'B','C')
-            dataPlacer(self.companyHoldings,sheet,6,5,'E','F')
-            dataPlacer(self.annualReturns,sheet,19,12,'L','M',False)
-            dataPlacer(self.keyCharacteristics,sheet,19,2,'B','C',False,'left',False)
+            dataPlacer(self.sectorHoldings,sheet,5,2, 'B','C')
+            dataPlacer(self.companyHoldings,sheet,18,2,'B','C',
+                        changeKeyDimensions=False)
+            dataPlacer(self.annualReturns,sheet,22,12,'L','M',
+                        changeKeyDimensions=False, changeValueDimensions=False)
+            dataPlacer(self.keyCharacteristics,sheet,5,12,'L','M',
+                        horizonalAlignmentValue='left')
 
             try:
-                dataPlacer(self.riskData['3y'],sheet,6,8,'H','I',False,'right')
-                dataPlacer(self.riskData['5y'],sheet,6,10,'J','K',False,'right')
-                dataPlacer(self.riskData['10y'],sheet,6,12,'L','M',False,'right')
+                dataPlacer(self.riskData['3y'],sheet,20,5,'E','F',False,'right',True,False)
             except:
-                None
+                riskData = emptyRiskStatistics
+                riskData['year'] = '3y'
+                dataPlacer(riskData,sheet,20,5,'E','F',False,'right',True,False)
+            try:
+                dataPlacer(self.riskData['5y'],sheet,20,7,'G','H',False,'right',True,False)
+            except:
+                riskData = emptyRiskStatistics
+                riskData['year'] = '5y'
+                dataPlacer(riskData,sheet,20,7,'G','H',False,'right',True,False)
+            try:
+                dataPlacer(self.riskData['10y'],sheet,20,9,'I','J',False,'right',True,False)
+            except:
+                riskData = emptyRiskStatistics
+                riskData['year'] = '10y'
+                dataPlacer(riskData,sheet,20,9,'I','J',False,'right',True,False)
     
-            imagePlacer(self.imageURL, sheet,'B26')
+            imagePlacer(self.imageURL, sheet,'L12')
             graphPlacer(ticker,stockSheet,stockData,sheet,minCol,minRow,maxCol)
             minCol += 1
             maxCol += 1
-
+        
+        stockSheet.sheet_state = 'hidden'
         wb.remove_sheet(wb['Sheet'])
         wb.save(filename)
         progress = Label(self, text="Finished!",bg='#4a00a0',fg='white')
@@ -113,7 +129,7 @@ class excelReport:
         for company in companyData:
             self.companyHoldings[company['holdingName']] = str(round(company['holdingPercent'] * 100, 2)) + '%'
 
-        annualReturnsData = fundPerformance['annualTotalReturns']['returns']
+        annualReturnsData = fundPerformance['annualTotalReturns']['returns'][:6]
         self.annualReturns = {}
 
         for returns in annualReturnsData:
