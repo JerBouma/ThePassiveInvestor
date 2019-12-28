@@ -7,7 +7,6 @@ from PIL import Image
 import threading
 
 # To-Do
-# - Add check if .xlsx is added to filename
 # - Add manual entering tickers (?)
 # - Check all code!
 # - Check how to transport to a valid exe
@@ -71,7 +70,7 @@ class Window(Frame):
     def generateReport(self):
         screenerURL = self.screenerEntry.get()
 
-        if filename.get()[-5:] == '.xlsx':
+        if self.filenameEntry.get()[-5:] == '.xlsx':
             filename = self.filenameEntry.get()
         else:
             filename = self.filenameEntry.get() + '.xlsx'
