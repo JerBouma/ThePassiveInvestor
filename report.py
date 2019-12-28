@@ -24,7 +24,11 @@ class excelReport:
         maxCol = 1
 
         for ticker in tickers:
-            excelReport.collectData(self,ticker)
+            try:
+                excelReport.collectData(self,ticker)
+            except:
+                print(ticker)
+                continue
 
             wb.create_sheet(title=ticker)
             sheet = wb[ticker]
@@ -74,7 +78,7 @@ class excelReport:
             minCol += 1
             maxCol += 1
 
-        wb.remove_sheet('Sheet')
+        #wb.remove_sheet('Sheet')
         wb.save(filename)
 
     def collectData(self, ticker):

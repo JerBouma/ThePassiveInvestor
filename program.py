@@ -1,9 +1,19 @@
 from tkinter import *
 from utils import symbolCollector
-from utils import imagePlacer
+from utils import programImagepPlacer
 from report import excelReport
 from PIL import ImageTk
 from PIL import Image
+
+# To-Do
+# - Add check if .xlsx is added to filename
+# - Add manual entering tickers (?)
+# - Check all code!
+# - Check how to transport to a valid exe
+# - Check layout
+# - Convert image urls to urls from GitHub repo
+# - Prevent TKinter from hanging
+# - Fix entry field from becoming empty once you click it again
 
 background = 'white'
 
@@ -24,7 +34,7 @@ class Window(Frame):
         self.pack(fill=BOTH, expand=1)
 
         try:
-            image = imagePlacer()
+            image = programImagepPlacer()
         except:
             image = ImageTk.PhotoImage(Image.open(r"C:\Users\jerbo\Google Drive\Programming\Python\ThePassiveInvestor\Images\ThePassiveInvestorPNG2.png"))
             print('URL Fetcher broke!')

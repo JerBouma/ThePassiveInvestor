@@ -88,7 +88,7 @@ def graphPlacer(ticker,stockSheet,stockData,
 
 programImageURL = 'https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor/master/Images/ThePassiveInvestorPNG.png'
 
-def imagePlacer(url = programImageURL):
+def programImagepPlacer(url = programImageURL):
     response = requests.get(url)
     image = Image.open(io.BytesIO(response.content))
     image = ImageTk.PhotoImage(image)
