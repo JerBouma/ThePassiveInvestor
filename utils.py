@@ -9,7 +9,7 @@ from openpyxl.styles import Alignment
 from openpyxl.drawing.image import Image
 from openpyxl.styles import Font
 from PIL import ImageTk
-from PIL import Image
+from PIL import Image as Image2
 import io
 import urllib3
 
@@ -90,7 +90,7 @@ programImageURL = 'https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor
 
 def programImagepPlacer(url = programImageURL):
     response = requests.get(url)
-    image = Image.open(io.BytesIO(response.content))
+    image = Image2.open(io.BytesIO(response.content))
     image = ImageTk.PhotoImage(image)
     return image
 

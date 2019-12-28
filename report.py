@@ -6,11 +6,14 @@ from utils import *
 from yfinance.utils import get_json 
 import yfinance as yf
 from datetime import datetime
+from tkinter import *
 
 class excelReport:
 
     def excelWriter(self, tickers, filename):
         wb = Workbook()
+        progress = Label(self, text="Collecting historic data..",bg='#4a00a0',fg='white')
+        progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
         stockData = yf.download(tickers, period='10y')['Adj Close']
         stockData = stockData[tickers]
         wb.create_sheet(title='Stock Data')
@@ -24,10 +27,12 @@ class excelReport:
         maxCol = 1
 
         for ticker in tickers:
+            progress = Label(self, text="Creating report for " + ticker,bg='#4a00a0',fg='white')
+            progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
+
             try:
                 excelReport.collectData(self,ticker)
             except:
-                print(ticker)
                 continue
 
             wb.create_sheet(title=ticker)
@@ -78,8 +83,10 @@ class excelReport:
             minCol += 1
             maxCol += 1
 
-        #wb.remove_sheet('Sheet')
+        wb.remove_sheet(wb['Sheet'])
         wb.save(filename)
+        progress = Label(self, text="Finished!",bg='#4a00a0',fg='white')
+        progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
 
     def collectData(self, ticker):
         url = "https://finance.yahoo.com/quote/" + ticker

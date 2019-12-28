@@ -4,6 +4,7 @@ from utils import programImagepPlacer
 from report import excelReport
 from PIL import ImageTk
 from PIL import Image
+import threading
 
 # To-Do
 # - Add check if .xlsx is added to filename
@@ -13,7 +14,6 @@ from PIL import Image
 # - Check layout
 # - Convert image urls to urls from GitHub repo
 # - Prevent TKinter from hanging
-# - Fix entry field from becoming empty once you click it again
 
 background = 'white'
 
@@ -26,9 +26,14 @@ class Window(Frame):
         
     def initWindow(self):
         def onClick(event):
-            event.widget.delete(0,END)
-            event.widget.insert(0,"")
-            event.widget.config(fg='black')
+            if event.widget.get() == self.filenameEntryExample:
+                event.widget.delete(0,END)
+                event.widget.insert(0,"")
+                event.widget.config(fg='black')
+            elif event.widget.get() == self.screenerEntryExample:
+                event.widget.delete(0,END)
+                event.widget.insert(0,"")
+                event.widget.config(fg='black')
     
         self.master.title("The Passive Investor")
         self.pack(fill=BOTH, expand=1)
@@ -62,16 +67,22 @@ class Window(Frame):
         screenerEntry.insert(0, self.screenerEntryExample)
         screenerEntry.bind('<FocusIn>', onClick)
 
-        excelReportButton = Button(self, text="Create Report", command=self.generateReport,bg='#4a00a0',fg='white')
+        excelReportButton = Button(self, text="Create Report", command=self.run,bg='#4a00a0',fg='white')
         excelReportButton.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
 
     def generateReport(self):
         screenerURL = self.screenerEntry.get()
         filename = self.filenameEntry.get()
 
+        progress = Label(self, text="Collecting tickers..",bg='#4a00a0',fg='white')
+        progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
         tickers = symbolCollector(screenerURL)
-        excelReport.excelWriter(self, tickers, filename)
 
+        excelReport.excelWriter(self, tickers, filename)
+    
+    def run(self):
+        threading.Thread(target=self.generateReport).start()
+        
 root = Tk()
 app = Window(root)
 app.configure(background=background)
