@@ -1,9 +1,11 @@
 from tkinter import *
 from utils import symbolCollector
+from utils import imagePlacer
 from report import excelReport
 from PIL import ImageTk
 from PIL import Image
-# from tkinter import filedialog
+
+background = 'white'
 
 class Window(Frame):
     
@@ -13,7 +15,6 @@ class Window(Frame):
         self.initWindow()
         
     def initWindow(self):
-
         def onClick(event):
             event.widget.delete(0,END)
             event.widget.insert(0,"")
@@ -22,14 +23,19 @@ class Window(Frame):
         self.master.title("The Passive Investor")
         self.pack(fill=BOTH, expand=1)
 
-        image = ImageTk.PhotoImage(Image.open(r"C:\Users\jerbo\Google Drive\Programming\Python\testing.png"))
-        panel = Label(self, image = image)
+        try:
+            image = imagePlacer()
+        except:
+            image = ImageTk.PhotoImage(Image.open(r"C:\Users\jerbo\Google Drive\Programming\Python\ThePassiveInvestor\Images\ThePassiveInvestorPNG2.png"))
+            print('URL Fetcher broke!')
+
+        panel = Label(self, image = image, bg=background)
         panel.image = image
         panel.grid(row=1,column=1, columnspan=2,sticky=W+E+N+S)
 
-        filenameLabel = Label(self, text="Filename")
+        filenameLabel = Label(self, text="Filename",bg=background)
         filenameLabel.grid(row=2, column=1, sticky=E)
-        screenerLabel = Label(self, text='ETF Screener URL')
+        screenerLabel = Label(self, text='ETF Screener URL',bg=background)
         screenerLabel.grid(row=3, column=1, sticky=E)
         
         self.filenameEntry = StringVar()
@@ -58,5 +64,8 @@ class Window(Frame):
 
 root = Tk()
 app = Window(root)
+app.configure(background=background)
 root.geometry('725x200')
+root.iconbitmap(r'C:\Users\jerbo\Google Drive\Programming\Python\ThePassiveInvestor\Images\icon ICO.ico')
+root.resizable(False, False)
 root.mainloop()

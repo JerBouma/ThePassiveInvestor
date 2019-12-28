@@ -8,7 +8,8 @@ from openpyxl.chart.axis import DateAxis
 from openpyxl.styles import Alignment
 from openpyxl.drawing.image import Image
 from openpyxl.styles import Font
-import PIL
+from PIL import ImageTk
+from PIL import Image
 import io
 import urllib3
 
@@ -85,6 +86,13 @@ def graphPlacer(ticker,stockSheet,stockData,
 
     sheet.add_chart(chart, 'E18')
 
+programImageURL = 'https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor/master/Images/ThePassiveInvestorPNG.png'
+
+def imagePlacer(url = programImageURL):
+    response = requests.get(url)
+    image = Image.open(io.BytesIO(response.content))
+    image = ImageTk.PhotoImage(image)
+    return image
 
 defaultKeyStatisticsChoices =  ['fundInceptionDate',
                                 'category',
