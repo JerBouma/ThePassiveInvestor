@@ -1,3 +1,3 @@
 # The Passive Investor
 
-![](images/outputExample.gif)
+![](Images/outputExample.gif)
