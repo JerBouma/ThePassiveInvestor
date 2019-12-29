@@ -9,6 +9,7 @@ With a large increase in ETFs available (over 5,000 in 2020), it can become diff
 With this program and the accompanying spreadsheet, I wish to make investment decisions easier to make and manage.
 
 ## Functionality
+In this section a brief overview and instruction is given on the program as well as the spreadsheet.
 
 ### The Program
 The program is able to output an overview of each fund on a seperate sheet. In this overview the following data is shown:
@@ -36,9 +37,10 @@ The program is able to output an overview of each fund on a seperate sheet. In t
 * Last five annual returns
 * Graph depicting the adjusted close prices over the last 10 years
 
-The input should either be an Excel File (with solely tickers in it) or via Yahoo Finance's ETF or Mutual Fund Screener (see [here](https://finance.yahoo.com/screener/etf/new) and [here](https://finance.yahoo.com/screener/mutualfund/new)). Note that the program <u>can not</u> handle stocks, bonds or anything else than a fund. This is because the data used is only available for funds and equity investing is not considered Passive Investing. 
+The input should either be an Excel File (with solely tickers in it) or via Yahoo Finance's ETF or Mutual Fund Screener (see [here](https://finance.yahoo.com/screener/etf/new) and [here](https://finance.yahoo.com/screener/mutualfund/new)). Note that the program <i>can not</i> handle stocks, bonds or anything else that is not a fund. This is because the data used is only available for funds and equity investing is not considered Passive Investing. 
 
 An example of the output can be found in the GIF below. This depicts several ETFs collected from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs). 
+
 ![](Images/outputExample.gif)
 
 ### The Spreadsheet 
@@ -84,4 +86,4 @@ An example of the Portfolio tab can be found below:
 Projects are bound to have (small) errors and can always be improved. Therefore, I highly encourage you to submit issues and create pull requests to improve the program and/or the spreadsheet.
 
 ## Disclaimer
-While the program allows you to make financial decisions more easily, it explicitely <i>does not</i> make the decisions for you. Therefore, these decisions remain your own and I am <u>not</u> responsible for any losses (or gains) made.
+While the program allows you to make financial decisions more easily, it explicitely <i>does not</i> make the decisions for you. Therefore, these decisions remain your own and I am not responsible for any losses (or gains) made.
