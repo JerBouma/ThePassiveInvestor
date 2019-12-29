@@ -36,10 +36,10 @@ The program is able to output an overview of each fund on a seperate sheet. In t
 * Last five annual returns
 * Graph depicting the adjusted close prices over the last 10 years
 
-An example of the output can be found in the GIF below. This depicts several ETFs found automatically collected from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs). 
- 
+The input should either be an Excel File (with solely tickers in it) or via Yahoo Finance's ETF or Mutual Fund Screener (see [here](https://finance.yahoo.com/screener/etf/new) and [here](https://finance.yahoo.com/screener/mutualfund/new)). Note that the program <u>can not</u> handle stocks, bonds or anything else than a fund. This is because the data used is only available for funds and equity investing is not considered Passive Investing. 
+
+An example of the output can be found in the GIF below. This depicts several ETFs collected from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs). 
 ![](Images/outputExample.gif)
-<p><i>Example of several ETFs from Yahoo Finance</i></p>
 
 ### The Spreadsheet 
 The spreadsheet allow you to input your investment choices and track them accordingly. It uses data as input from what the program creates, but can also be used independently. It features the following.
@@ -71,11 +71,17 @@ The spreadsheet allow you to input your investment choices and track them accord
     * Created to be bookmarked to quickly track holdings on a mobile phone
     * Requires the tab to be 'Published to the Web' and then bookmarked. Columns can be shifted to match screensize.
 
-An example of the Portfolio tab can be found below:
-![](Images/SpreadsheetExample.PNG)
-
 To see a live example and to obtain an empty copy see below:
 * [Live example](https://docs.google.com/spreadsheets/d/1Ssb8hRVdwR3vLl8VascSOt3VrFhXec967phnrw9t8Do/edit?usp=sharing)
 * [Empty version](https://docs.google.com/spreadsheets/d/1BeJzpVVjJC8CGL-VAbSmvbZX9a3ws34-JlOijvm_sWQ/edit?usp=sharing)
 
 You can create a copy of the empty version for personal use.
+
+An example of the Portfolio tab can be found below:
+![](Images/SpreadsheetExample.PNG)
+
+## Contribution
+Projects are bound to have (small) errors and can always be improved. Therefore, I highly encourage you to submit issues and create pull requests to improve the program and/or the spreadsheet.
+
+## Disclaimer
+While the program allows you to make financial decisions more easily, it explicitely <i>does not</i> make the decisions for you. Therefore, these decisions remain your own and I am <u>not</u> responsible for any losses (or gains) made.
