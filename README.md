@@ -6,8 +6,25 @@ Therefore, the term 'Passive Investing' is often coined around. This often refer
 
 With a large increase in ETFs available (over 5,000 in 2020), it can become difficult to make the right choice in what ETFs you wish to invest. There are many different providers offering ETFs (iShares, Vanguard, Invesco) as well as with changes to the underlying stocks (i.e. High Yield, Super Dividends, Equal Weighted). This is quickly reflected when looking for a S&P 500 ETF as there are over 20 different ETFs available.
 
-With this program and the accompanying spreadhseet, I wish to make investment decisions easier to make and manage.
+With this program and the accompanying spreadsheet, I wish to make investment decisions easier to make and manage.
+
+## Functionality
+The program is able to output an overview of each ETF (or Mutual Fund) on a seperate sheet. In this overview the following data is shown:
+- The title of the fund
+- A summary about the fund's purpose/goal
+- Sector Holdings (% in each sector)
+- Company Holdings (top 10 companies with highest %)
+- Risk Statistics (several measures of risk)
+- Characteristics of the instrument (inception date, category, total assets, currency, NAV price and latest close price)
+- Morningstar Style Box (style of the fund)
+- Last five annual returns
+- Graph depicting the adjusted close prices over the last 10 years
+
+An example of the output can be found in the GIF below. This depicts several ETFs found automatically collected from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs){:target="_blank"}.
+ 
+
+![](Images/outputExample.gif)
+<p><i>Example of several ETFs from Yahoo Finance</i></p>
+
 
 ## Example
-![](Images/outputExample.gif)
-<i>Example of 100 ETFs from Yahoo Finance</i>
