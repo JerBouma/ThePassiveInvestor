@@ -72,7 +72,7 @@ The spreadsheet allow you to input your investment choices and track them accord
     * Requires the tab to be 'Published to the Web' and then bookmarked. Columns can be shifted to match screensize.
 
 An example of the Portfolio tab can be found below:
-![](Images/spreadsheetExample.PNG)
+![](Images/SpreadsheetExample.PNG)
 
 To see a live example and to obtain an empty copy see below:
 * [Live example](https://docs.google.com/spreadsheets/d/1Ssb8hRVdwR3vLl8VascSOt3VrFhXec967phnrw9t8Do/edit?usp=sharing)
