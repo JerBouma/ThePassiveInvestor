@@ -1,24 +1,24 @@
-import requests
+import io
 import lxml
 from lxml import html
 import pandas as pd
-from openpyxl.chart import Reference
-from openpyxl.chart import LineChart
+from PIL import ImageTk, Image
+from openpyxl.chart import Reference, LineChart
 from openpyxl.chart.axis import DateAxis
-from openpyxl.styles import Alignment
-from openpyxl.drawing.image import Image
-from openpyxl.styles import Font
-from PIL import ImageTk
-from PIL import Image as Image2
-import io
+from openpyxl.styles import Alignment, Font
+from openpyxl.drawing.image import Image as ExcelImage
+import requests
 import urllib3
 
-def symbolCollector(url):
-    page = requests.get(url)
-    tree = html.fromstring(page.content)
-    table = tree.xpath('//table')
-    symbol = pd.read_html(lxml.etree.tostring(table[0],method='html'))
-    symbol = symbol[0]['Symbol'].to_list()
+def symbolCollector(input):
+    if input[:4] == 'http':
+        page = requests.get(input)
+        tree = html.fromstring(page.content)
+        table = tree.xpath('//table')
+        symbol = pd.read_html(lxml.etree.tostring(table[0],method='html'))
+        symbol = symbol[0]['Symbol'].to_list()
+    else:
+        symbol = pd.read_excel(input, header=None)[0].to_list()
 
     return symbol
 
@@ -60,7 +60,7 @@ def imagePlacer(imageURL, sheet, location):
         http = urllib3.PoolManager()
         imageLocation = http.request('GET',imageURL)
         imageFile = io.BytesIO(imageLocation.data)
-        image = Image(imageFile)
+        image = ExcelImage(imageFile)
         sheet.add_image(image,location)
     except:
         sheet[location] = "No image available"
@@ -86,27 +86,8 @@ def graphPlacer(ticker,stockSheet,stockData,
 
     sheet.add_chart(chart, 'E4')
 
-programImageURL = 'https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor/master/Images/ThePassiveInvestorPNG.png'
-
-def programImagepPlacer(url = programImageURL):
+def programImagepPlacer(url = 'https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor/master/Images/ThePassiveInvestorPNG.png'):
     response = requests.get(url)
-    image = Image2.open(io.BytesIO(response.content))
+    image = Image.open(io.BytesIO(response.content))
     image = ImageTk.PhotoImage(image)
     return image
-
-defaultKeyStatisticsChoices =  ['fundInceptionDate',
-                                'category',
-                                'totalAssets']
-
-defaultsummaryDetailChoices =  ['currency',
-                                'navPrice',
-                                'previousClose']
-
-emptyRiskStatistics         = { "year"              : 0,
-                                "alpha"             : 0,
-                                "beta"	            : 0,
-                                "meanAnnualReturn"	: 0,
-                                "rSquared"          : 0,
-                                "stdDev"            : 0,
-                                "sharpeRatio"       : 0,
-                                "treynorRatio"      : 0}

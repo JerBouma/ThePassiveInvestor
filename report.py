@@ -1,19 +1,22 @@
+from datetime import datetime
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.styles import Font
 from openpyxl.utils.dataframe import dataframe_to_rows
+from tkinter import *
 from utils import *
+from input import *
 from yfinance.utils import get_json 
 import yfinance as yf
-from datetime import datetime
-from tkinter import *
 
 class excelReport:
 
     def excelWriter(self, tickers, filename):
         wb = Workbook()
-        progress = Label(self, text="Collecting historic data..",bg='#4a00a0',fg='white')
+
+        progress = Label(self, text="Collecting historic data..",bg=buttonColor,fg=buttonTextColour)
         progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
+
         stockData = yf.download(tickers, period='10y')['Adj Close']
         stockData = stockData[tickers]
         wb.create_sheet(title='Stock Data')
@@ -27,7 +30,7 @@ class excelReport:
         minCol,minRow,maxCol = 1, 3, 1
 
         for ticker in tickers:
-            progress = Label(self, text="Creating report for " + ticker,bg='#4a00a0',fg='white')
+            progress = Label(self, text="Creating report for " + ticker,bg=buttonColor,fg=buttonTextColour)
             progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
 
             try:
@@ -101,8 +104,6 @@ class excelReport:
         stockSheet.sheet_state = 'hidden'
         wb.remove_sheet(wb['Sheet'])
         wb.save(filename)
-        progress = Label(self, text="Finished!",bg='#4a00a0',fg='white')
-        progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
 
     def collectData(self, ticker):
         url = "https://finance.yahoo.com/quote/" + ticker

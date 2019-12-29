@@ -4,15 +4,13 @@ from utils import programImagepPlacer
 from report import excelReport
 from PIL import ImageTk
 from PIL import Image
+from input import *
 import threading
 
 # To-Do
-# - Add manual entering tickers (?)
 # - Check all code!
 # - Check how to transport to a valid exe
 # - Convert image urls to urls from GitHub repo
-
-background = '#e8e8e8'
 
 class Window(Frame):
     
@@ -38,7 +36,7 @@ class Window(Frame):
         try:
             image = programImagepPlacer()
         except:
-            image = ImageTk.PhotoImage(Image.open(r"C:\Users\jerbo\Google Drive\Programming\Python\ThePassiveInvestor\Images\ThePassiveInvestorPNG2.png"))
+            image = ImageTk.PhotoImage(Image.open(r"C:\Users\jerbo\Google Drive\Programming\Python\ThePassiveInvestor\Images\ThePassiveInvestorPNG.png"))
             print('URL Fetcher broke!')
 
         panel = Label(self, image = image, bg=background)
@@ -47,24 +45,24 @@ class Window(Frame):
 
         filenameLabel = Label(self, text="Filename",bg=background)
         filenameLabel.grid(row=2, column=1, sticky=E)
-        screenerLabel = Label(self, text='ETF Screener URL',bg=background)
+        screenerLabel = Label(self, text='Tickers URL/File',bg=background)
         screenerLabel.grid(row=3, column=1, sticky=E)
         
         self.filenameEntry = StringVar()
-        self.filenameEntryExample = "Example: C:\Documents\Investing\Output\BestETFs.xlsx"
-        filenameEntry = Entry(self, textvariable=self.filenameEntry, width=100, fg='gray')
+        self.filenameEntryExample = "Example: C:\Documents\Investing\Output\S&P500_Ouput.xlsx"
+        filenameEntry = Entry(self, textvariable=self.filenameEntry, width=100, fg=entryTextColour)
         filenameEntry.grid(row=2, column=2, sticky=W, pady=10, padx=10)
         filenameEntry.insert(0, self.filenameEntryExample)
         filenameEntry.bind('<FocusIn>', onClick)
 
         self.screenerEntry = StringVar()
-        self.screenerEntryExample = "Example: https://finance.yahoo.com/etfs (or from https://finance.yahoo.com/screener/etf/new)"
-        screenerEntry = Entry(self, textvariable=self.screenerEntry, width=100, fg='gray')
+        self.screenerEntryExample = "Example: https://finance.yahoo.com/etfs (or C:\Documents\Investing\Input\S&P500_Input.xlsx)"
+        screenerEntry = Entry(self, textvariable=self.screenerEntry, width=100, fg=entryTextColour)
         screenerEntry.grid(row=3, column=2, sticky=W, pady=10, padx=10)
         screenerEntry.insert(0, self.screenerEntryExample)
         screenerEntry.bind('<FocusIn>', onClick)
 
-        excelReportButton = Button(self, text="Create Report", command=self.run,bg='#4a00a0',fg='white')
+        excelReportButton = Button(self, text="Create Report", command=self.runProgram,bg=buttonColor,fg=buttonTextColour)
         excelReportButton.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
 
     def generateReport(self):
@@ -75,13 +73,16 @@ class Window(Frame):
         else:
             filename = self.filenameEntry.get() + '.xlsx'
 
-        progress = Label(self, text="Collecting tickers..",bg='#4a00a0',fg='white')
+        progress = Label(self, text="Collecting tickers..",bg=buttonColor,fg=buttonTextColour)
         progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
         tickers = symbolCollector(screenerURL)
 
         excelReport.excelWriter(self, tickers, filename)
+
+        excelReportButton = Button(self, text="Create Report", command=self.runProgram,bg=buttonColor,fg=buttonTextColour)
+        excelReportButton.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
     
-    def run(self):
+    def runProgram(self):
         threading.Thread(target=self.generateReport).start()
         
 root = Tk()
