@@ -1,11 +1,11 @@
 from tkinter import *
 from utils import symbolCollector
-from utils import programImagepPlacer
+from utils import programImagePlacer
 from report import excelReport
 from PIL import ImageTk
 from PIL import Image
-from input import *
 import threading
+from utils import *
 
 # To-Do
 # - Check all code!
@@ -33,12 +33,7 @@ class Window(Frame):
         self.master.title("The Passive Investor")
         self.pack(fill=BOTH, expand=1)
 
-        try:
-            image = programImagepPlacer()
-        except:
-            image = ImageTk.PhotoImage(Image.open(r"C:\Users\jerbo\Google Drive\Programming\Python\ThePassiveInvestor\Images\ThePassiveInvestorPNG.png"))
-            print('URL Fetcher broke!')
-
+        image = programImagePlacer()
         panel = Label(self, image = image, bg=background)
         panel.image = image
         panel.grid(row=1,column=1, columnspan=2,sticky=W+E+N+S)
@@ -49,7 +44,7 @@ class Window(Frame):
         screenerLabel.grid(row=3, column=1, sticky=E)
         
         self.filenameEntry = StringVar()
-        self.filenameEntryExample = "Example: C:\Documents\Investing\Output\S&P500_Ouput.xlsx"
+        self.filenameEntryExample = "Example: C:\Documents\Investing\Output\S&P500_Output.xlsx"
         filenameEntry = Entry(self, textvariable=self.filenameEntry, width=100, fg=entryTextColour)
         filenameEntry.grid(row=2, column=2, sticky=W, pady=10, padx=10)
         filenameEntry.insert(0, self.filenameEntryExample)
@@ -89,6 +84,5 @@ root = Tk()
 app = Window(root)
 app.configure(background=background)
 root.geometry('725x200')
-root.iconbitmap(r'C:\Users\jerbo\Google Drive\Programming\Python\ThePassiveInvestor\Images\icon ICO.ico')
 root.resizable(False, False)
 root.mainloop()

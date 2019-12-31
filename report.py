@@ -5,7 +5,6 @@ from openpyxl.styles import Font
 from openpyxl.utils.dataframe import dataframe_to_rows
 from tkinter import *
 from utils import *
-from input import *
 from yfinance.utils import get_json 
 import yfinance as yf
 
