@@ -4,9 +4,37 @@ Theories and research about the stock market have stated that the semi-strong fo
 
 Therefore, the term 'Passive Investing' is often coined around. This often refers to buying funds (either ETFs or Mutual Funds) that follow the index (i.e. S&P 500, Dow Jones Index) or a broad market (Developed Markets, MSCI World) for diversification benefits. This means that a sudden decrease in performance of one stock within the index does not (on average) lead to a significant decline in the index as a whole. This allows the holder to spend limited time monitoring his holdings, therefore the term 'Passive'.
 
-With a large increase in ETFs available (over 5,000 in 2020), it can become difficult to make the right choice in what ETFs you wish to invest. There are many different providers offering ETFs (iShares, Vanguard, Invesco) as well as with changes to the underlying stocks (i.e. High Yield, Super Dividends, Equal Weighted). This is quickly reflected when looking for a S&P 500 ETF as there are over 20 different ETFs available.
+With a large increase in ETFs available (over 5,000 in 2020), it can become difficult to make the best choice in what you wish to invest. There are many different providers (iShares, Vanguard, Invesco) as well as with changes to the underlying stocks (i.e. High Yield, Super Dividends, Equal Weighted). This is quickly reflected when looking for a S&P 500 ETF as there are over 20 different ETFs available.
 
 With this program and the accompanying spreadsheet, I wish to make investment decisions easier to make and manage.
+
+## Set-Up / Installation (TL;DR)
+Installing the program and running an analysis:
+
+1. Download the most recent release [here](https://github.com/JerBouma/ThePassiveInvestor/releases).
+2. Use the Yahoo Finance Screener ([ETFs](https://finance.yahoo.com/screener/etf/new) or [Mutual Funds](https://finance.yahoo.com/screener/mutualfund/new))
+    * You can also use 'Quote Lookup' ([example](https://finance.yahoo.com/lookup/etf?s=developed%20markets))
+    * You can also use an Excel file that has the tickers listed vertically.
+3. Open the program, enter your save location (i.e. C:/Documents/Investing/DevelopedMarketsETF.xlsx) and input the URL or Excelfile you decided to use in Step 2.
+4. Run the program, this takes less than a minute to complete.
+5. Analyse the Excelfile created
+
+If you have made an investment decisions, you can now use the Spreadsheet:
+
+1. Download your own version [here](https://docs.google.com/spreadsheets/d/1BeJzpVVjJC8CGL-VAbSmvbZX9a3ws34-JlOijvm_sWQ/edit?usp=sharing) (File > Make a copy)
+1. Enter your order on the Orderdata tab
+2. The Ticker can now be entered on the Portfolio tab
+3. Copy the Sector Holdings Mix (as found in the Excelfile created by the Program) to the Sector Holdings tab.
+4. Enter the ticker on the Portfolio tab to be able to monitor your holdings adequately.
+
+In case you wish to use the Mobile View tab to monitor your investments on your phone:
+
+1. File > Publish to the Web > Only Mobile View tab
+2. Copy and bookmark the link obtained
+3. Open the link on your mobile phone
+    * Recommended: in Chrome, select 'Add to Chromescreen' for easy access
+4. Expand columns accordingly to fill the screen
+    * See example [on my phone](Images/exampleMobileView.png) or [live version](https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMw6lNGjzWJSyM7wr1kXUiaix_rBA2GA35MsZ_g91hHVXmyvR932az0SwmhmTDCjc1Pb7Mxqi-X-s/pubhtml?gid=1365265627&single=true)
 
 ## Functionality
 In this section a brief overview and instruction is given on the program as well as the spreadsheet.
