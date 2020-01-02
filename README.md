@@ -25,8 +25,7 @@ Installing the program and running an analysis:
 If you have made an investment decisions, you can now use the Spreadsheet:
 
 1. Download your own version [here](https://docs.google.com/spreadsheets/d/1BeJzpVVjJC8CGL-VAbSmvbZX9a3ws34-JlOijvm_sWQ/edit?usp=sharing) (File > Make a copy)
-1. Enter your order on the Orderdata tab
-2. The Ticker can now be entered on the Portfolio tab
+2. Enter your order on the Orderdata tab
 3. Copy the Sector Holdings Mix (as found in the Excelfile created by the Program) to the Sector Holdings tab.
 4. Enter the ticker on the Portfolio tab to be able to monitor your holdings adequately.
 
