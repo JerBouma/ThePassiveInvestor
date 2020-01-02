@@ -8,6 +8,8 @@ With a large increase in ETFs available (over 5,000 in 2020), it can become diff
 
 With this program and the accompanying spreadsheet, I wish to make investment decisions easier to make and manage.
 
+![](Images/programExample.png)
+
 ## Set-Up / Installation (TL;DR)
 Installing the program and running an analysis:
 
