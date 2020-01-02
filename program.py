@@ -1,6 +1,5 @@
 from tkinter import *
 from utils import symbolCollector
-from utils import programImagePlacer
 from report import excelReport
 from PIL import ImageTk
 from PIL import Image
