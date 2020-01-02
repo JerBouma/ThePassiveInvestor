@@ -12,6 +12,7 @@ With this program and the accompanying spreadsheet, I wish to make investment de
 Installing the program and running an analysis:
 
 1. Download the most recent release [here](https://github.com/JerBouma/ThePassiveInvestor/releases).
+    * If you have Python you can also download the folder 'ThePassiveInvestor' and run program.py.
 2. Use the Yahoo Finance Screener ([ETFs](https://finance.yahoo.com/screener/etf/new) or [Mutual Funds](https://finance.yahoo.com/screener/mutualfund/new))
     * You can also use 'Quote Lookup' ([example](https://finance.yahoo.com/lookup/etf?s=developed%20markets))
     * You can also use an Excel file that has the tickers listed vertically.
