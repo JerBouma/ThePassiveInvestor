@@ -122,8 +122,6 @@ requests    >= 2.22.0
 urllib3     >= 1.25.7                
 yfinance    >= 0.1.54
 
-I used the scraper module from yFinance under the idea that creating something that has already been created is a waste of time. Therefore, props to the creator of yFinance, check the repository [here](https://github.com/ranaroussi/yfinance). 
-
 ## Contribution
 Projects are bound to have (small) errors and can always be improved. Therefore, I highly encourage you to submit issues and create pull requests to improve the program and/or the spreadsheet.
 
