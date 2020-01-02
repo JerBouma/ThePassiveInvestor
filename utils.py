@@ -5,7 +5,7 @@ import pandas as pd
 from openpyxl.chart import Reference, LineChart
 from openpyxl.chart.axis import DateAxis
 from openpyxl.styles import Alignment, Font
-from openpyxl.drawing.image import Image
+from openpyxl.drawing.image import Image as ExcelImage
 import requests
 import urllib3
 
@@ -59,7 +59,7 @@ def imagePlacer(imageURL, sheet, location):
         http = urllib3.PoolManager()
         imageLocation = http.request('GET',imageURL)
         imageFile = io.BytesIO(imageLocation.data)
-        image = Image(imageFile)
+        image = ExcelImage(imageFile)
         sheet.add_image(image,location)
     except:
         sheet[location] = "No image available"
