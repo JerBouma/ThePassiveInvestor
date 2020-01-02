@@ -112,16 +112,6 @@ You can create a copy of the empty version for personal use.
 An example of the Portfolio tab can be found below:
 ![](Images/SpreadsheetExample.PNG)
 
-## Dependencies
-numpy       >= 1.18.0                
-openpyxl    >= 3.0.2                   
-pandas      >= 0.25.3         
-pillow      >= 6.2.1                   
-python      >= 3.7.5                
-requests    >= 2.22.0               
-urllib3     >= 1.25.7                
-yfinance    >= 0.1.54
-
 ## Contribution
 Projects are bound to have (small) errors and can always be improved. Therefore, I highly encourage you to submit issues and create pull requests to improve the program and/or the spreadsheet.
 
