@@ -27,7 +27,7 @@ class Window(Frame):
         self.master.title("The Passive Investor")
         self.pack(fill=BOTH, expand=1)
 
-        image = programImagePlacer()
+        image = ImageTk.PhotoImage(Image.open("images/ThePassiveInvestorPNG.png"))
         panel = Label(self, image = image, bg=background)
         panel.image = image
         panel.grid(row=1,column=1, columnspan=2,sticky=W+E+N+S)
@@ -78,5 +78,6 @@ root = Tk()
 app = Window(root)
 app.configure(background=background)
 root.geometry('725x200')
+root.iconbitmap("images/iconICO.ico")
 root.resizable(False, False)
 root.mainloop() 

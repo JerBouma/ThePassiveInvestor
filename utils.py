@@ -86,14 +86,6 @@ def graphPlacer(ticker,stockSheet,stockData,
 
     sheet.add_chart(chart, 'E4')
 
-programImage = 'https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor/master/Images/ThePassiveInvestorPNG.png'
-
-def programImagePlacer(url = programImage):
-    response = requests.get(url)
-    image = Image.open(io.BytesIO(response.content))
-    image = ImageTk.PhotoImage(image)
-    return image
-
 background = '#e8e8e8'
 buttonColor = '#4a00a0'
 buttonTextColour = 'white'
