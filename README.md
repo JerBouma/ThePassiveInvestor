@@ -10,7 +10,7 @@ With this program and the accompanying spreadsheet, I wish to make investment de
 
 ![](Images/programExample.png)
 
-## Set-Up / Installation (TL;DR)
+## Set-Up / Installation
 Installing the program and running an analysis:
 
 1. Download the most recent release [here](https://github.com/JerBouma/ThePassiveInvestor/releases).
