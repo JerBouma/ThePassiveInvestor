@@ -115,5 +115,12 @@ An example of the Portfolio tab can be found below:
 ## Contribution
 Projects are bound to have (small) errors and can always be improved. Therefore, I highly encourage you to submit issues and create pull requests to improve the program and/or the spreadsheet.
 
+If you wish to test the packaging, you can do so by:
+
+1. Downloading the repository.
+2. Inside the repository execute the following command
+    * ```pyinstaller --add-data="images;images" --icon=images\iconICO.ico --name=ThePassiveInvestor program.py```
+3. Open the 'dist' folder.
+
 ## Disclaimer
 While the program allows you to make financial decisions more easily, it explicitely <i>does not</i> make the decisions for you. Therefore, these decisions remain your own and I am not responsible for any losses (or gains) made.
