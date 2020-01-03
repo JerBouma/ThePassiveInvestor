@@ -2,7 +2,7 @@ numpy==1.18.0
 openpyxl==3.0.2
 pandas==0.25.3
 pillow==6.2.1
-python==3.7.5
 requests==2.22.0
 urllib3==1.25.7
 yfinance==0.1.54
+lxml
