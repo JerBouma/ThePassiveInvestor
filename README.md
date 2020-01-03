@@ -117,10 +117,16 @@ Projects are bound to have (small) errors and can always be improved. Therefore,
 
 If you wish to test the packaging, you can do so by:
 
-1. Downloading the repository.
-2. Inside the repository execute the following command
-    * ```pyinstaller --add-data="images;images" --icon=images\iconICO.ico --name=ThePassiveInvestor program.py```
-3. Open the 'dist' folder.
+1. Clone / Download this repository.
+2. Open CMD / PowerShell / Terminal in folder.
+3. install dependencies.
+    - ```pip install -r requirements.txt```
+4. Run the following to build app.
+    - Windows: 
+        - ```pyinstaller --add-data="images;images" --icon=images\iconICO.ico --name=ThePassiveInvestor program.py```
+    - MacOs / Linux:
+        - ```pyinstaller --add-data="images:images" --icon=images/iconICO.ico --name=ThePassiveInvestor --windowed program.py```
+5. Open the 'dist' folder, run exe / app.
 
 ## Disclaimer
 While the program allows you to make financial decisions more easily, it explicitely <i>does not</i> make the decisions for you. Therefore, these decisions remain your own and I am not responsible for any losses (or gains) made.
