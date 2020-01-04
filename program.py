@@ -1,5 +1,4 @@
 from tkinter import *
-from utils import symbolCollector
 from report import excelReport
 from PIL import ImageTk
 from PIL import Image
