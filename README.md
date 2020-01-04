@@ -66,6 +66,7 @@ The program is able to output an overview of each fund on a seperate sheet. In t
 * Morningstar Style Box (style of the fund)
 * Last five annual returns
 * Graph depicting the adjusted close prices over the last 10 years
+* Last 10 years of adjusted close prices for all Tickers (hidden sheet)
 
 The input should either be an Excel File (with solely tickers in it) or via Yahoo Finance's ETF or Mutual Fund Screener (see [here](https://finance.yahoo.com/screener/etf/new) and [here](https://finance.yahoo.com/screener/mutualfund/new)). Note that the program <i>can not</i> handle stocks, bonds or anything else that is not a fund. This is because the data used is only available for funds and equity investing is not considered Passive Investing. 
 
