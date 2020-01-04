@@ -122,12 +122,29 @@ If you wish to test the packaging, you can do so by:
 2. Open CMD / PowerShell / Terminal in folder.
 3. install dependencies.
     - ```pip install -r requirements.txt```
-4. Run the following to build app.
-    - Windows: 
-        - ```pyinstaller --add-data="images;images" --icon=images\iconICO.ico --name=ThePassiveInvestor program.py```
-    - MacOs / Linux:
-        - ```pyinstaller --add-data="images:images" --icon=images/iconICO.ico --name=ThePassiveInvestor --windowed program.py```
-5. Open the 'dist' folder, run exe / app.
+    
+
+4. ### Run / Develop
+
+    1. Run the following to develop the app
+        - ```python program.py```
+
+
+5. ### Build
+
+    1. Run the following to build app.
+        - Windows: 
+            - ```pyinstaller --add-data="images;images" --icon=images\iconICO.ico --name=ThePassiveInvestor program.py```
+        - MacOs / Linux:
+            - ```pyinstaller --add-data="images:images" --icon=images/iconICO.ico --name=ThePassiveInvestor --windowed program.py```
+    2. Open the 'dist' folder, run exe / app.
+        - Windows:
+            - CMD:
+                - ```start dist\ThePassiveInvestor.exe```
+            - PowerShell:
+                - ```dist\ThePassiveInvestor.exe```
+        - MacOS 
+            - ```open dist/ThePassiveInvestor.app```
 
 ## Disclaimer
 While the program allows you to make financial decisions more easily, it explicitely <i>does not</i> make the decisions for you. Therefore, these decisions remain your own and I am not responsible for any losses (or gains) made.
