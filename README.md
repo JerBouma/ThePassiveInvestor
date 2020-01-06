@@ -122,7 +122,7 @@ If you wish to test the packaging, you can do so by:
 2. Open CMD/PowerShell/Terminal in folder.
 3. install dependencies: ```pip install -r requirements.txt``` 
 
-### Run/Develop:
+### Run/Develop
 Run the following command:
 - ```python program.py```
 
