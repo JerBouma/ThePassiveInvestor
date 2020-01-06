@@ -1,6 +1,5 @@
 import io
-import lxml
-from lxml import html
+from lxml import html, etree
 import pandas as pd
 from openpyxl.chart import Reference, LineChart
 from openpyxl.chart.axis import DateAxis
@@ -8,23 +7,23 @@ from openpyxl.styles import Alignment, Font
 from openpyxl.drawing.image import Image as ExcelImage
 import requests
 import urllib3
-import os, sys
+import os
+import sys
 
-# from https://stackoverflow.com/questions/51264169/pyinstaller-add-folder-with-images-in-exe-file but altered
-def resource_path(relative_path):
+def resourcePath(relativePath):
     try:
-        base_path = sys._MEIPASS
+        basePath = sys._MEIPASS
     except Exception:
-        base_path = os.path.abspath(".")
+        basePath = os.path.abspath(".")
 
-    return os.path.join(base_path, relative_path)
+    return os.path.join(basePath, relativePath)
 
 def symbolCollector(input):
     if input[:4] == 'http':
         page = requests.get(input)
         tree = html.fromstring(page.content)
         table = tree.xpath('//table')
-        symbol = pd.read_html(lxml.etree.tostring(table[0],method='html'))
+        symbol = pd.read_html(etree.tostring(table[0],method='html'))
         symbol = symbol[0]['Symbol'].to_list()
     else:
         symbol = pd.read_excel(input, header=None)[0].to_list()
@@ -71,7 +70,7 @@ def imagePlacer(imageURL, sheet, location):
         imageFile = io.BytesIO(imageLocation.data)
         image = ExcelImage(imageFile)
         sheet.add_image(image,location)
-    except:
+    except OSError:
         sheet[location] = "No image available"
         sheet[location].font = Font(italic=True)
 
@@ -108,11 +107,11 @@ defaultsummaryDetailChoices =  ['currency',
                                 'navPrice',
                                 'previousClose']
 
-emptyRiskStatistics         = { "year"              : 0,
-                                "alpha"             : 0,
-                                "beta"	            : 0,
-                                "meanAnnualReturn"	: 0,
-                                "rSquared"          : 0,
-                                "stdDev"            : 0,
-                                "sharpeRatio"       : 0,
-                                "treynorRatio"      : 0}
+emptyRiskStatistics         = { "year"                  : 0,
+                                "alpha"                 : 0,
+                                "beta"	                : 0,
+                                "meanAnnualReturn"	    : 0,
+                                "rSquared"              : 0,
+                                "stdDev"                : 0,
+                                "sharpeRatio"           : 0,
+                                "treynorRatio"          : 0}
