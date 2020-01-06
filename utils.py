@@ -8,6 +8,16 @@ from openpyxl.styles import Alignment, Font
 from openpyxl.drawing.image import Image as ExcelImage
 import requests
 import urllib3
+import os, sys
+
+# from https://stackoverflow.com/questions/51264169/pyinstaller-add-folder-with-images-in-exe-file but altered
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def symbolCollector(input):
     if input[:4] == 'http':

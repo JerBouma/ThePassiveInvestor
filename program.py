@@ -1,5 +1,4 @@
 from tkinter import *
-from utils import symbolCollector
 from report import excelReport
 from PIL import ImageTk
 from PIL import Image
@@ -26,7 +25,7 @@ class Window(Frame):
         self.master.title("The Passive Investor")
         self.pack(fill=BOTH, expand=1)
 
-        image = ImageTk.PhotoImage(Image.open("images/ThePassiveInvestorPNG.png"))
+        image = ImageTk.PhotoImage(Image.open(resource_path("images/ThePassiveInvestorPNG.png")))
         panel = Label(self, image = image, bg=background)
         panel.image = image
         panel.grid(row=1,column=1, columnspan=2,sticky=W+E+N+S)
