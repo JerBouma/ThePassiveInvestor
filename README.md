@@ -121,24 +121,26 @@ If you wish to test the packaging, you can do so by:
 1. Clone/Download this repository.
 2. Open CMD/PowerShell/Terminal in folder.
 3. install dependencies: ```pip install -r requirements.txt``` 
+
+### Run/Develop:
+Run the following command:
+- ```python program.py```
+
+### Build
+ Installation:
+- Windows: 
+    - ```pyinstaller --add-data="images;images" --icon=images\iconICO.ico --name=ThePassiveInvestor program.py```
+- MacOS/Linux:
+    - ```pyinstaller --add-data="images:images" --icon=images/iconICO.ico --name=ThePassiveInvestor --windowed program.py```
     
-- ### Run/Develop
-    1. Run the following to start the program:
-        - ```python program.py```
-- ### Build
-    1. Run the following to build the program:
-        - Windows: 
-            - ```pyinstaller --add-data="images;images" --icon=images\iconICO.ico --name=ThePassiveInvestor program.py```
-        - MacOS/Linux:
-            - ```pyinstaller --add-data="images:images" --icon=images/iconICO.ico --name=ThePassiveInvestor --windowed program.py```
-    2. Open the 'dist' folder and the 'ThePassiveInvestor' folder, run exe/app. Or:
-        - Windows:
-            - CMD:
-                - ```start dist\ThePassiveInvestor\ThePassiveInvestor.exe```
-            - PowerShell:
-                - ```dist\ThePassiveInvestor\ThePassiveInvestor.exe```
-        - MacOS 
-            - ```open dist/ThePassiveInvestor.app```
+ Open the 'dist' folder and the 'ThePassiveInvestor' folder, run exe/app. Or:
+- Windows:
+    - CMD:
+        - ```start dist\ThePassiveInvestor\ThePassiveInvestor.exe```
+    - PowerShell:
+        - ```dist\ThePassiveInvestor\ThePassiveInvestor.exe```
+- MacOS 
+    - ```open dist/ThePassiveInvestor.app```
 
 ## Disclaimer
 While the program allows you to make financial decisions more easily, it explicitely <i>does not</i> make the decisions for you. Therefore, these decisions remain your own and I am not responsible for any losses (or gains) made.
