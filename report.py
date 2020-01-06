@@ -1,7 +1,6 @@
 from datetime import datetime
 from openpyxl import Workbook
-from openpyxl.styles import Alignment
-from openpyxl.styles import Font
+from openpyxl.styles import Alignment, Font
 from openpyxl.utils.dataframe import dataframe_to_rows
 from tkinter import *
 from utils import *
@@ -32,14 +31,16 @@ class excelReport:
             progress = Label(self, text="Creating report for " + ticker,bg=buttonColor,fg=buttonTextColour)
             progress.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
 
-            try:
-                excelReport.collectData(self,ticker)
-            except:
-                continue
-
             wb.create_sheet(title=ticker)
             sheet = wb[ticker]
             sheet.sheet_view.showGridLines = False
+
+            try:
+                excelReport.collectData(self,ticker)
+            except KeyError:
+                sheet['B2'].value = "No data available"
+                sheet['B2'].font = Font(italic=True)
+                continue
 
             sheet['B2'].value = self.tickerName
             sheet['B2'].font = Font(bold=True, size=15)
@@ -78,19 +79,19 @@ class excelReport:
 
             try:
                 dataPlacer(self.riskData['3y'],sheet,20,5,'E','F',False,'right',True,False)
-            except:
+            except KeyError:
                 riskData = emptyRiskStatistics
                 riskData['year'] = '3y'
                 dataPlacer(riskData,sheet,20,5,'E','F',False,'right',True,False)
             try:
                 dataPlacer(self.riskData['5y'],sheet,20,7,'G','H',False,'right',True,False)
-            except:
+            except KeyError:
                 riskData = emptyRiskStatistics
                 riskData['year'] = '5y'
                 dataPlacer(riskData,sheet,20,7,'G','H',False,'right',True,False)
             try:
                 dataPlacer(self.riskData['10y'],sheet,20,9,'I','J',False,'right',True,False)
-            except:
+            except KeyError:
                 riskData = emptyRiskStatistics
                 riskData['year'] = '10y'
                 dataPlacer(riskData,sheet,20,9,'I','J',False,'right',True,False)
