@@ -118,31 +118,26 @@ Projects are bound to have (small) errors and can always be improved. Therefore,
 
 If you wish to test the packaging, you can do so by:
 
-1. Clone / Download this repository.
-2. Open CMD / PowerShell / Terminal in folder.
+1. Clone/Download this repository.
+2. Open CMD/PowerShell/Terminal in folder.
 3. install dependencies.
     - ```pip install -r requirements.txt```
     
-
-4. ### Run / Develop
-
-    1. Run the following to develop the app
+### Run/Develop
+    1. Run the following to start the program:
         - ```python program.py```
-
-
-5. ### Build
-
-    1. Run the following to build app.
+### Build
+    1. Run the following to build the program:
         - Windows: 
             - ```pyinstaller --add-data="images;images" --icon=images\iconICO.ico --name=ThePassiveInvestor program.py```
-        - MacOs / Linux:
+        - MacOS/Linux:
             - ```pyinstaller --add-data="images:images" --icon=images/iconICO.ico --name=ThePassiveInvestor --windowed program.py```
-    2. Open the 'dist' folder, run exe / app.
+    2. Open the 'dist' folder and the 'ThePassiveInvestor' folder, run exe/app. Or:
         - Windows:
             - CMD:
-                - ```start dist\ThePassiveInvestor.exe```
+                - ```start dist\ThePassiveInvestor\ThePassiveInvestor.exe```
             - PowerShell:
-                - ```dist\ThePassiveInvestor.exe```
+                - ```dist\ThePassiveInvestor\ThePassiveInvestor.exe```
         - MacOS 
             - ```open dist/ThePassiveInvestor.app```
 
