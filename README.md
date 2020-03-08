@@ -105,8 +105,8 @@ The spreadsheet allow you to input your investment choices and track them accord
     * Requires the tab to be 'Published to the Web' and then bookmarked. Columns can be shifted to match screensize.
 
 To see a live example and to obtain an empty copy see below:
-* [Live example](https://docs.google.com/spreadsheets/d/1Ssb8hRVdwR3vLl8VascSOt3VrFhXec967phnrw9t8Do/edit?usp=sharing)
-* [Empty version](https://docs.google.com/spreadsheets/d/1BeJzpVVjJC8CGL-VAbSmvbZX9a3ws34-JlOijvm_sWQ/edit?usp=sharing)
+* [Live example](https://docs.google.com/spreadsheets/d/1Lss8VY6XDFChidh8pzyQ7-RQhL37m9Vu_wyL6YJ8sz8/edit?usp=sharing)
+* [Empty version](https://docs.google.com/spreadsheets/d/1Mo7o67UpwCxbn9OB7iAX8rrUpoqDMXWWpR3L22RHcAw/edit?usp=sharing)
 
 You can create a copy of the empty version for personal use.
 
