@@ -24,7 +24,7 @@ Installing the program and running an analysis:
 
 If you have made an investment decisions, you can now use the Spreadsheet:
 
-1. Download your own version [here](https://docs.google.com/spreadsheets/d/1BeJzpVVjJC8CGL-VAbSmvbZX9a3ws34-JlOijvm_sWQ/edit?usp=sharing) (File > Make a copy)
+1. Download your own version [here](https://docs.google.com/spreadsheets/d/1Mo7o67UpwCxbn9OB7iAX8rrUpoqDMXWWpR3L22RHcAw/edit?usp=sharing) (File > Make a copy)
 2. Enter your order on the Orderdata tab
 3. Copy the Sector Holdings Mix (as found in the Excelfile created by the Program) to the Sector Holdings tab.
 4. Enter the ticker on the Portfolio tab to be able to monitor your holdings adequately.
@@ -36,7 +36,7 @@ In case you wish to use the Mobile View tab to monitor your investments on your 
 3. Open the link on your mobile phone
     * Recommended: in Chrome, select 'Add to Chromescreen' for easy access
 4. Expand columns accordingly to fill the screen
-    * See example [on my phone](Images/exampleMobileView.png) or [live version](https://docs.google.com/spreadsheets/d/e/2PACX-1vRvMw6lNGjzWJSyM7wr1kXUiaix_rBA2GA35MsZ_g91hHVXmyvR932az0SwmhmTDCjc1Pb7Mxqi-X-s/pubhtml?gid=1365265627&single=true)
+    * See example [on my phone](Images/exampleMobileView.png) or [live version](https://docs.google.com/spreadsheets/d/e/2PACX-1vSti0XnP10tE0lfX_f2mDIwPytj0xgXedjEfskJp5DMfygMJ600nEZdeaDUZWXz-t03CYrv8K-u7F1r/pubhtml?gid=1365265627&single=true)
 
 ## Functionality
 In this section a brief overview and instruction is given on the program as well as the spreadsheet.
