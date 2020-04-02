@@ -170,6 +170,11 @@ Run the following command:
 - MacOS 
     - ```open dist/ThePassiveInvestor.app```
 
+## Troubleshooting
+The following issue is known:
+- <b>Error pyi_rth_certifi</b>: include the files found in the folder "SSL" to the main directory of the program.
+Alternatively, download the latest release which fixes this issue.
+ 
 ## Disclaimer
 While the program allows you to make financial decisions more easily,
 it explicitely <i>does not</i> make the decisions for you. Therefore, these
