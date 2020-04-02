@@ -10,6 +10,7 @@ import urllib3
 import os
 import sys
 
+
 def resourcePath(relativePath):
     try:
         basePath = sys._MEIPASS
@@ -17,6 +18,7 @@ def resourcePath(relativePath):
         basePath = os.path.abspath(".")
 
     return os.path.join(basePath, relativePath)
+
 
 def symbolCollector(input):
     if input[:4] == 'http':
@@ -30,6 +32,7 @@ def symbolCollector(input):
 
     return symbol
 
+
 def dataPlacer(data,sheet, startingRow, column, columnKey,
     columnValue, horizonalAlignmentKey=False, horizonalAlignmentValue=False,
     changeKeyDimensions=True, changeValueDimensions=True):
@@ -38,8 +41,8 @@ def dataPlacer(data,sheet, startingRow, column, columnKey,
     maxLengthValue = 0
 
     for key, value in data.items():
-        keyPosition     = sheet.cell(column=column, row=startingRow, value=key)
-        valuePosition   = sheet.cell(column=column+1, row=startingRow, value=value)
+        keyPosition = sheet.cell(column=column, row=startingRow, value=key)
+        valuePosition = sheet.cell(column=column+1, row=startingRow, value=value)
         startingRow += 1
 
         if horizonalAlignmentKey:
@@ -57,22 +60,24 @@ def dataPlacer(data,sheet, startingRow, column, columnKey,
         if lengthValue > maxLengthValue:
             maxLengthValue = lengthValue
 
-    if changeKeyDimensions == True:
+    if changeKeyDimensions:
         sheet.column_dimensions[columnKey].width    = maxLengthKey * 1.2
     
-    if changeValueDimensions == True:
+    if changeValueDimensions:
         sheet.column_dimensions[columnValue].width  = maxLengthValue * 1.2
+
 
 def imagePlacer(imageURL, sheet, location):
     try:
         http = urllib3.PoolManager()
-        imageLocation = http.request('GET',imageURL)
+        imageLocation = http.request('GET', imageURL)
         imageFile = io.BytesIO(imageLocation.data)
         image = ExcelImage(imageFile)
         sheet.add_image(image,location)
-    except OSError:
+    except Exception:
         sheet[location] = "No image available"
         sheet[location].font = Font(italic=True)
+
 
 def graphPlacer(ticker,stockSheet,stockData,
     sheet,minCol,minRow,maxCol):
@@ -94,24 +99,25 @@ def graphPlacer(ticker,stockSheet,stockData,
 
     sheet.add_chart(chart, 'E4')
 
+
 background = '#e8e8e8'
 buttonColor = '#4a00a0'
 buttonTextColour = 'white'
 entryTextColour = 'gray'
 
-defaultKeyStatisticsChoices =  ['fundInceptionDate',
-                                'category',
-                                'totalAssets']
+defaultKeyStatisticsChoices = ['fundInceptionDate',
+                               'category',
+                               'totalAssets']
 
-defaultsummaryDetailChoices =  ['currency',
-                                'navPrice',
-                                'previousClose']
+defaultsummaryDetailChoices = ['currency',
+                               'navPrice',
+                               'previousClose']
 
-emptyRiskStatistics         = { "year"                  : 0,
-                                "alpha"                 : 0,
-                                "beta"	                : 0,
-                                "meanAnnualReturn"	    : 0,
-                                "rSquared"              : 0,
-                                "stdDev"                : 0,
-                                "sharpeRatio"           : 0,
-                                "treynorRatio"          : 0}
+emptyRiskStatistics = {"year": 0,
+                       "alpha": 0,
+                       "beta": 0,
+                       "meanAnnualReturn": 0,
+                       "rSquared": 0,
+                       "stdDev": 0,
+                       "sharpeRatio": 0,
+                       "treynorRatio": 0}
