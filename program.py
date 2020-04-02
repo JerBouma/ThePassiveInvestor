@@ -6,6 +6,7 @@ from PIL import Image
 import threading
 from utils import *
 
+
 class Window(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
@@ -70,16 +71,18 @@ class Window(Frame):
 
         except Exception as error:
             messagebox.showerror('Error', "The program has crashed with the following error: \n\n"
-            + str(error) + "\n\nIf the problem persists, please create an Issue with the error "
-            "message on the project's GitHub page: https://github.com/JerBouma/ThePassiveInvestor/issues. \n\n"
-            + "You can copy this entire message with CTRL + C.")
+                                 + str(error) + "\n\nIf the problem persists, please create an Issue with the error "
+                                 + "message on the project's GitHub page:"
+                                 + "https://github.com/JerBouma/ThePassiveInvestor/issues. \n\n"
+                                 + "You can copy this entire message with CTRL + C.")
         
         excelReportButton = Button(self, text="Create Report", command=self.runProgram,bg=buttonColor,fg=buttonTextColour)
         excelReportButton.grid(row=4,column=1, columnspan=2, sticky=W+E+N+S,padx=10, pady=10)
 
     def runProgram(self):
         threading.Thread(target=self.generateReport).start()
-        
+
+
 root = Tk()
 app = Window(root)
 app.configure(background=background)

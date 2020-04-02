@@ -1,11 +1,11 @@
 from datetime import datetime
 from openpyxl import Workbook
-from openpyxl.styles import Alignment, Font
 from openpyxl.utils.dataframe import dataframe_to_rows
 from tkinter import *
 from utils import *
 from yfinance.utils import get_json 
 import yfinance as yf
+
 
 class excelReport:
 
@@ -37,7 +37,7 @@ class excelReport:
 
             try:
                 excelReport.collectData(self,ticker)
-            except KeyError:
+            except (KeyError, TypeError):
                 sheet['B2'].value = "No data available"
                 sheet['B2'].font = Font(italic=True)
                 continue
@@ -158,5 +158,6 @@ class excelReport:
 
         for option in defaultsummaryDetailChoices:
             self.keyCharacteristics[option] = summaryDetail[option]
+
 
 
