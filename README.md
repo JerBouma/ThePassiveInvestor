@@ -1,10 +1,21 @@
 # The Passive Investor
 
-Theories and research about the stock market have stated that the semi-strong form of market efficiency seems to hold. This means that all public information is accurately reflected in the price of an financial instrument. This makes the job of a portfolio manager primarily managing the desired risk appetite of the client and not explicitly trying to outperform the market. This fact in combination with Finance professionals all around the world looking for that 'edge' to make their investment decisions as profitable as possible, makes it so the average joe can not compete.
+Theories and research about the stock market have stated that the semi-strong form of market efficiency seems to hold.
+This means that all public information is accurately reflected in the price of an financial instrument.
+This makes the job of a portfolio manager primarily managing the desired risk appetite of the client and not explicitly
+trying to outperform the market. This fact in combination with Finance professionals all around the world looking for
+that 'edge' to make their investment decisions as profitable as possible, makes it so the average joe can not compete.
 
-Therefore, the term 'Passive Investing' is often coined around. This refers to buying funds (either ETFs or Mutual Funds) that follow the index (i.e. S&P 500, Dow Jones Index) or a broad market (Developed Markets, MSCI World) for diversification benefits. This means that a sudden decrease in performance of one stock within the index does not (on average) lead to a significant decline in the index as a whole. This allows the holder to spend limited time monitoring his holdings, therefore the term 'Passive'.
+Therefore, the term 'Passive Investing' is often coined around. This refers to buying funds
+(either ETFs or Mutual Funds) that follow the index (i.e. S&P 500, Dow Jones Index) or a broad market
+(Developed Markets, MSCI World) for diversification benefits. This means that a sudden decrease in performance
+of one stock within the index does not (on average) lead to a significant decline in the index as a whole.
+This allows the holder to spend limited time monitoring his holdings, therefore the term 'Passive'.
 
-With a large increase in ETFs available (over 5,000 in 2020), it can become difficult to make the best choice in what you wish to invest. There are many different providers (iShares, Vanguard, Invesco) as well as with changes to the underlying stocks (i.e. High Yield, Super Dividends, Equal Weighted). This is quickly reflected when looking for a S&P 500 ETF as there are over 20 different ETFs available.
+With a large increase in ETFs available (over 5,000 in 2020), it can become difficult to make the best choice in
+what you wish to invest. There are many different providers (iShares, Vanguard, Invesco) as well as with changes
+to the underlying stocks (i.e. High Yield, Super Dividends, Equal Weighted). This is quickly reflected when looking
+for a S&P 500 ETF as there are over 20 different ETFs available.
 
 With this program and the accompanying spreadsheet, I wish to make investment decisions easier to make and manage.
 
@@ -15,18 +26,25 @@ Installing the program and running an analysis:
 
 1. Download the most recent release [here](https://github.com/JerBouma/ThePassiveInvestor/releases).
     * If you have Python you can also download the repository and run program.py.
-2. Use the Yahoo Finance Screener ([ETFs](https://finance.yahoo.com/screener/etf/new) or [Mutual Funds](https://finance.yahoo.com/screener/mutualfund/new))
+2. Unpack the ZIP file to your prefered location and run the file "ThePassiveInvestor.exe"
+3. Use the Yahoo Finance Screener ([ETFs](https://finance.yahoo.com/screener/etf/new)
+or [Mutual Funds](https://finance.yahoo.com/screener/mutualfund/new)), select your preferences and click
+"Find ETFs". Then you can copy the URL.
     * You can also use 'Quote Lookup' ([example](https://finance.yahoo.com/lookup/etf?s=developed%20markets))
     * You can also use an Excel file that has the tickers listed vertically.
-3. Open the program, enter your save location (i.e. C:/Documents/Investing/DevelopedMarketsETF.xlsx) and input the URL or Excelfile you decided to use in Step 2.
+3. Open the program, enter your save location (i.e. C:/Documents/DevelopedMarketsETF.xlsx) and
+input the URL or Excelfile you decided to use in Step 2. Note that you <u>do not</u> have to create an Excel file,
+the program does this for you. However, it does not create folders.
 4. Run the program, this takes less than a minute to complete.
 5. Analyse the Excelfile created
 
-If you have made an investment decisions, you can now use the Spreadsheet:
+If you have made an investment decision, you can now use the Spreadsheet:
 
 1. Download your own version [here](https://docs.google.com/spreadsheets/d/1Mo7o67UpwCxbn9OB7iAX8rrUpoqDMXWWpR3L22RHcAw/edit?usp=sharing) (File > Make a copy)
 2. Enter your order on the Orderdata tab
 3. Copy the Sector Holdings Mix (as found in the Excelfile created by the Program) to the Sector Holdings tab.
+    * The Sector Holdings can change over time but the general allocation will hold. However, it might be
+    interesting to run the program every few months (or once a year) to update the Sector Holdings.
 4. Enter the ticker on the Portfolio tab to be able to monitor your holdings adequately.
 
 In case you wish to use the Mobile View tab to monitor your investments on your phone:
@@ -36,13 +54,15 @@ In case you wish to use the Mobile View tab to monitor your investments on your 
 3. Open the link on your mobile phone
     * Recommended: in Chrome, select 'Add to Chromescreen' for easy access
 4. Expand columns accordingly to fill the screen
-    * See example [on my phone](Images/exampleMobileView.png) or [live version](https://docs.google.com/spreadsheets/d/e/2PACX-1vSti0XnP10tE0lfX_f2mDIwPytj0xgXedjEfskJp5DMfygMJ600nEZdeaDUZWXz-t03CYrv8K-u7F1r/pubhtml?gid=1365265627&single=true)
+    * See example [on my phone](Images/exampleMobileView.png) or
+    [live version](https://docs.google.com/spreadsheets/d/e/2PACX-1vSti0XnP10tE0lfX_f2mDIwPytj0xgXedjEfskJp5DMfygMJ600nEZdeaDUZWXz-t03CYrv8K-u7F1r/pubhtml?gid=1365265627&single=true)
 
 ## Functionality
 In this section a brief overview and instruction is given on the program as well as the spreadsheet.
 
 ### The Program
-The program is able to output an overview of each fund on a seperate sheet. In this overview the following data is shown:
+The program is able to output an overview of each fund on a seperate sheet. In this overview the following data
+is shown:
 * The title of the fund
 * A summary about the fund's purpose/goal
 * Sector Holdings (% in each sector)
@@ -68,17 +88,24 @@ The program is able to output an overview of each fund on a seperate sheet. In t
 * Graph depicting the adjusted close prices over the last 10 years
 * Last 10 years of adjusted close prices for all Tickers (hidden sheet)
 
-The input should either be an Excel File (with solely tickers in it) or via Yahoo Finance's ETF or Mutual Fund Screener (see [here](https://finance.yahoo.com/screener/etf/new) and [here](https://finance.yahoo.com/screener/mutualfund/new)). Note that the program <i>can not</i> handle stocks, bonds or anything else that is not a fund. This is because the data used is only available for funds and equity investing is not considered Passive Investing. 
+The input should either be an Excel File (with solely tickers in it) or via Yahoo Finance's ETF or
+Mutual Fund Screener (see [here](https://finance.yahoo.com/screener/etf/new)
+and [here](https://finance.yahoo.com/screener/mutualfund/new)). Note that the program <i>can not</i>
+handle stocks, bonds or anything else that is not a fund. This is because the data used is only available
+for funds and equity investing is not considered Passive Investing. 
 
-An example of the output can be found in the GIF below. This depicts several ETFs collected from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs). 
+An example of the output can be found in the GIF below. This depicts several ETFs
+collected from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs). 
 
 ![](Images/outputExample.gif)
 
 ### The Spreadsheet 
-The spreadsheet allow you to input your investment choices and track them accordingly. It uses data as input from what the program creates, but can also be used independently. It features the following.
+The spreadsheet allow you to input your investment choices and track them accordingly. Due to the function
+GOOGLEFINANCE, your investments' value is updated every few minutes. The spreadsheet uses data as input
+from what the program creates, but can also be used independently. It features the following.
 
 * Portfolio Tab
-    * Display information about  (all continiously updating):
+    * Display information about:
         * Amount bought
         * Purchase date
         * Recent price
@@ -114,7 +141,8 @@ An example of the Portfolio tab can be found below:
 ![](Images/SpreadsheetExample.PNG)
 
 ## Contribution
-Projects are bound to have (small) errors and can always be improved. Therefore, I highly encourage you to submit issues and create pull requests to improve the program and/or the spreadsheet.
+Projects are bound to have (small) errors and can always be improved. Therefore,
+I highly encourage you to submit issues and create pull requests to improve the program and/or the spreadsheet.
 
 If you wish to test the packaging, you can do so by:
 
@@ -143,4 +171,6 @@ Run the following command:
     - ```open dist/ThePassiveInvestor.app```
 
 ## Disclaimer
-While the program allows you to make financial decisions more easily, it explicitely <i>does not</i> make the decisions for you. Therefore, these decisions remain your own and I am not responsible for any losses (or gains) made.
+While the program allows you to make financial decisions more easily,
+it explicitely <i>does not</i> make the decisions for you. Therefore, these
+decisions remain your own and I am not responsible for any losses (or gains) made.
