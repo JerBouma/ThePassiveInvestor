@@ -40,7 +40,7 @@ the program does this for you. However, it does not create folders.
 
 If you have made an investment decision, you can now use the Spreadsheet:
 
-1. Download your own version [here](https://docs.google.com/spreadsheets/d/1Mo7o67UpwCxbn9OB7iAX8rrUpoqDMXWWpR3L22RHcAw/edit?usp=sharing) (File > Make a copy)
+1. Download your own version [here](https://docs.google.com/spreadsheets/d/1Tq6yMmjbLulgMfwJNXvzjxywJYAtG4DMa0pRa-ZLhRM/edit?usp=sharing) (File > Make a copy)
 2. Enter your order on the Orderdata tab
 3. Copy the Sector Holdings Mix (as found in the Excelfile created by the Program) to the Sector Holdings tab.
     * The Sector Holdings can change over time but the general allocation will hold. However, it might be
@@ -127,13 +127,15 @@ from what the program creates, but can also be used independently. It features t
     * Is used to accurately depict the diversification displayed on the portfolio tab
     * Data can be obtained from the output from the program's created excelfile
     * Modifications on a hidden tab are made to correctly weight the diversification (based on amount bought)
+* Statistics
+    * Provides statistics about all tickers inputted which includes standard deviations, correlations, risk/return etc.
 * Mobile View tab
     * Created to be bookmarked to quickly track holdings on a mobile phone
     * Requires the tab to be 'Published to the Web' and then bookmarked. Columns can be shifted to match screensize.
 
 To see a live example and to obtain an empty copy see below:
-* [Live example](https://docs.google.com/spreadsheets/d/1Lss8VY6XDFChidh8pzyQ7-RQhL37m9Vu_wyL6YJ8sz8/edit?usp=sharing)
-* [Empty version](https://docs.google.com/spreadsheets/d/1Mo7o67UpwCxbn9OB7iAX8rrUpoqDMXWWpR3L22RHcAw/edit?usp=sharing)
+* [Live example](https://docs.google.com/spreadsheets/d/16J48maLqZLzc-nAkA4TaSOCCRLy3dkUc_CjqXGmiFwU/edit?usp=sharing)
+* [Empty version](https://docs.google.com/spreadsheets/d/1Tq6yMmjbLulgMfwJNXvzjxywJYAtG4DMa0pRa-ZLhRM/edit?usp=sharing)
 
 You can create a copy of the empty version for personal use.
 
