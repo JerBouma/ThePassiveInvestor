@@ -133,11 +133,7 @@ from what the program creates, but can also be used independently. It features t
     * Created to be bookmarked to quickly track holdings on a mobile phone
     * Requires the tab to be 'Published to the Web' and then bookmarked. Columns can be shifted to match screensize.
 
-To see a live example and to obtain an empty copy see below:
-* [Live example](https://docs.google.com/spreadsheets/d/16J48maLqZLzc-nAkA4TaSOCCRLy3dkUc_CjqXGmiFwU/edit?usp=sharing)
-* [Empty version](https://docs.google.com/spreadsheets/d/1Tq6yMmjbLulgMfwJNXvzjxywJYAtG4DMa0pRa-ZLhRM/edit?usp=sharing)
-
-You can create a copy of the empty version for personal use.
+To obtain your own copy, open [this link](https://docs.google.com/spreadsheets/d/1D4BCgiY70_-8wym-aI1vmHBo3yuvF5dObMqnHYZtGMU/edit?usp=sharing) and select "File" > "Make a copy".
 
 An example of the Portfolio tab can be found below:
 ![](Images/SpreadsheetExample.PNG)
