@@ -17,7 +17,7 @@ what you wish to invest. There are many different providers (iShares, Vanguard, 
 to the underlying stocks (i.e. High Yield, Super Dividends, Equal Weighted). This is quickly reflected when looking
 for a S&P 500 ETF as there are over 20 different ETFs available.
 
-With this program and the accompanying spreadsheet, I wish to make investment decisions easier to make and manage.
+With this program, I wish to make investment decisions easier to make and manage.
 
 ![](Images/programExample.png)
 
@@ -27,40 +27,20 @@ Installing the program and running an analysis:
 1. Download the most recent release [here](https://github.com/JerBouma/ThePassiveInvestor/releases).
     * If you have Python you can also download the repository and run program.py.
 2. Unpack the ZIP file to your prefered location and run the file "ThePassiveInvestor.exe"
-3. Use the Yahoo Finance Screener ([ETFs](https://finance.yahoo.com/screener/etf/new)
-or [Mutual Funds](https://finance.yahoo.com/screener/mutualfund/new)), select your preferences and click
-"Find ETFs". Then you can copy the URL.
+3. Go to the [FinanceDatabase](https://github.com/JerBouma/FinanceDatabase) and search the database for your preferred tickers.
+Then, place the tickers in an Excel sheet with the tickers listed vertically. See the example on the page of the FinanceDatabase.
+   * You can also use the Yahoo Finance Screener ([ETFs](https://finance.yahoo.com/screener/etf/new)
+   or [Mutual Funds](https://finance.yahoo.com/screener/mutualfund/new)), select your preferences and click
+   "Find ETFs". Then you can copy the URL.
     * You can also use 'Quote Lookup' ([example](https://finance.yahoo.com/lookup/etf?s=developed%20markets))
-    * You can also use an Excel file that has the tickers listed vertically.
-3. Open the program, enter your save location (i.e. C:/Documents/DevelopedMarketsETF.xlsx) and
+    * You can also use your own Excel file that has the tickers listed vertically.
+4. Open the program, enter your save location (i.e. C:/Documents/DevelopedMarketsETF.xlsx) and
 input the URL or Excelfile you decided to use in Step 2. Note that you <u>do not</u> have to create an Excel file,
 the program does this for you. However, it does not create folders.
-4. Run the program, this takes less than a minute to complete.
-5. Analyse the Excelfile created
-
-If you have made an investment decision, you can now use the Spreadsheet:
-
-1. Download your own version [here](https://docs.google.com/spreadsheets/d/1Tq6yMmjbLulgMfwJNXvzjxywJYAtG4DMa0pRa-ZLhRM/edit?usp=sharing) (File > Make a copy)
-2. Enter your order on the Orderdata tab
-3. Copy the Sector Holdings Mix (as found in the Excelfile created by the Program) to the Sector Holdings tab.
-    * The Sector Holdings can change over time but the general allocation will hold. However, it might be
-    interesting to run the program every few months (or once a year) to update the Sector Holdings.
-4. Enter the ticker on the Portfolio tab to be able to monitor your holdings adequately.
-
-In case you wish to use the Mobile View tab to monitor your investments on your phone:
-
-1. File > Publish to the Web > Only Mobile View tab
-2. Copy and bookmark the link obtained
-3. Open the link on your mobile phone
-    * Recommended: in Chrome, select 'Add to Chromescreen' for easy access
-4. Expand columns accordingly to fill the screen
-    * See example [on my phone](Images/exampleMobileView.png) or
-    [live version](https://docs.google.com/spreadsheets/d/e/2PACX-1vSti0XnP10tE0lfX_f2mDIwPytj0xgXedjEfskJp5DMfygMJ600nEZdeaDUZWXz-t03CYrv8K-u7F1r/pubhtml?gid=1365265627&single=true)
+5. Run the program, this takes less than a minute to complete.
+6. Analyse the Excelfile created
 
 ## Functionality
-In this section a brief overview and instruction is given on the program as well as the spreadsheet.
-
-### The Program
 The program is able to output an overview of each fund on a seperate sheet. In this overview the following data
 is shown:
 * The title of the fund
@@ -99,48 +79,9 @@ collected from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.c
 
 ![](Images/outputExample.gif)
 
-### The Spreadsheet 
-The spreadsheet allow you to input your investment choices and track them accordingly. Due to the function
-GOOGLEFINANCE, your investments' value is updated every few minutes. The spreadsheet uses data as input
-from what the program creates, but can also be used independently. It features the following.
-
-* Portfolio Tab
-    * Display information about:
-        * Amount bought
-        * Purchase date
-        * Recent price
-        * Bought price
-        * Additional costs
-        * Total invested
-        * Recent value
-        * Return (in % and €)
-        * YTD trendline
-        * Weight in the portfolio
-        * Days
-    * Recent changes in value of the Indices and Currency exchanges and their trends
-    * Comparison between portfolio and indices as benchmarks
-    * Accurate input on diversification 
-* Orderbook Tab
-    * Accurate tracking of orders made that are aggregated on the Portfolio tab
-    * Allows the Portfolio Tab not to become cluttered when you invest frequently in the same fund
-* Sector Holdings tab
-    * Is used to accurately depict the diversification displayed on the portfolio tab
-    * Data can be obtained from the output from the program's created excelfile
-    * Modifications on a hidden tab are made to correctly weight the diversification (based on amount bought)
-* Statistics
-    * Provides statistics about all tickers inputted which includes standard deviations, correlations, risk/return etc.
-* Mobile View tab
-    * Created to be bookmarked to quickly track holdings on a mobile phone
-    * Requires the tab to be 'Published to the Web' and then bookmarked. Columns can be shifted to match screensize.
-
-To obtain your own copy, open [this link](https://docs.google.com/spreadsheets/d/1D4BCgiY70_-8wym-aI1vmHBo3yuvF5dObMqnHYZtGMU/edit?usp=sharing) and select "File" > "Make a copy".
-
-An example of the Portfolio tab can be found below:
-![](Images/SpreadsheetExample.PNG)
-
 ## Contribution
 Projects are bound to have (small) errors and can always be improved. Therefore,
-I highly encourage you to submit issues and create pull requests to improve the program and/or the spreadsheet.
+I highly encourage you to submit issues and create pull requests to improve the program:
 
 If you wish to test the packaging, you can do so by:
 
