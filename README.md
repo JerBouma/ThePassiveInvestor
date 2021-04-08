@@ -89,6 +89,8 @@ If you wish to test the packaging, you can do so by:
 2. Open CMD/PowerShell/Terminal in folder.
 3. install dependencies: ```pip install -r requirements.txt``` 
 
+<a href="https://www.buymeacoffee.com/jerbouma" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
 ### Run/Develop
 Run the following command:
 - ```python program.py```
