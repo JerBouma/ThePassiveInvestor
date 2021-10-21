@@ -1,9 +1,9 @@
 # The Passive Investor
 [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-brightgreen?logo=buymeacoffee)](https://www.buymeacoffee.com/jerbouma)
-[![Issues](https://img.shields.io/github/issues/jerbouma/financedatabase)](https://github.com/JerBouma/FinanceDatabase/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/JerBouma/FinanceDatabase?color=yellow)](https://github.com/JerBouma/FinanceDatabase/pulls)
-[![PYPI Version](https://img.shields.io/pypi/v/FinanceDatabase)](https://pypi.org/project/FinanceDatabase/)
-[![PYPI Downloads](https://img.shields.io/pypi/dm/FinanceDatabase)](https://pypi.org/project/FinanceDatabase/)
+[![Issues](https://img.shields.io/github/issues/jerbouma/ThePassiveInvestor)](https://github.com/JerBouma/ThePassiveInvestor/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/JerBouma/ThePassiveInvestor?color=yellow)](https://github.com/JerBouma/ThePassiveInvestor/pulls)
+[![PYPI Version](https://img.shields.io/pypi/v/ThePassiveInvestor)](https://pypi.org/project/ThePassiveInvestor/)
+[![PYPI Downloads](https://img.shields.io/pypi/dm/ThePassiveInvestor)](https://pypi.org/project/ThePassiveInvestor/)
 
 Theories and research about the stock market have stated that the semi-strong form of market efficiency seems to hold.
 This means that all public information is accurately reflected in the price of a financial instrument.
