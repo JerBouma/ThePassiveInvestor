@@ -40,7 +40,7 @@ The package can be installed via the following commands:
 The functions within this package are:
 - `collect_data(ticker)` - collects the most important data for ETFs as listed in the [Functionality](#Functionality) 
   section.
-- `create_ETF_report(tickers, filename)` - uses collect_data to create an Excel report with data, as 
+- `create_ETF_report(tickers, filename, folder=None)` - uses collect_data to create an Excel report with data, as 
 depicted in the GIF above, per sheet for each ticker.
   
 Therefore, if you wish to collect data on an ETF or create a report of a selection of ETFs you can use the following 
