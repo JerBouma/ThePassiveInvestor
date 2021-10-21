@@ -2,7 +2,7 @@ from datetime import datetime
 
 from yfinance.utils import get_json
 
-from config import DEFAULT_KEY_STATISTICS_CHOICES, DEFAULT_SUMMARY_DETAIL_CHOICES
+from .config import DEFAULT_KEY_STATISTICS_CHOICES, DEFAULT_SUMMARY_DETAIL_CHOICES
 
 
 def collect_data(ticker):

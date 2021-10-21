@@ -4,12 +4,12 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
 from openpyxl.utils.dataframe import dataframe_to_rows
 
-from collect_data import collect_data
-from config import EMPTY_RISK_STATISTICS
-from utils import data_placer, image_placer, graph_placer
+from .collect_data import collect_data
+from .config import EMPTY_RISK_STATISTICS
+from .utils import data_placer, image_placer, graph_placer
 
 
-def create_ETF_report(tickers, filename):
+def create_ETF_report(tickers, filename, folder=None):
     """
     Description
     ----
@@ -23,6 +23,8 @@ def create_ETF_report(tickers, filename):
         A list of tickers or a single ticker from an ETF (i.e. VOO)
     filename (string)
         The name and location of the file you wish to save the data to.
+    folder (string, default is None)
+        If prefered, you can seperate filename and folder.
 
     Output
     ----
@@ -41,6 +43,11 @@ def create_ETF_report(tickers, filename):
 
     if filename[-4:] not in ['xlsx', 'xlsm', 'xlsb']:
         filename = f"{filename}.xlsx"
+    if folder is not None:
+        if folder[-1] != "\\":
+            filename = f"{folder}\\{filename}"
+        else:
+            filename = f"{folder}{filename}"
 
     workbook.create_sheet(title='Stock Data')
     stock_sheet = workbook['Stock Data']
