@@ -31,7 +31,7 @@ def create_ETF_report(tickers, filename, folder=None):
     Returns an Excel file with the given filename with data on each ticker.
     """
     workbook = Workbook()
-    stock_data = yf.download(tickers, period='10y')['Adj Close']
+    stock_data = yf.download(tickers, period='10y', progress=False)['Adj Close']
 
     if isinstance(tickers, str):
         tickers = [tickers]
