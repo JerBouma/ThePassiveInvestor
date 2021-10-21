@@ -1,7 +1,12 @@
 # The Passive Investor
+[![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-brightgreen?logo=buymeacoffee)](https://www.buymeacoffee.com/jerbouma)
+[![Issues](https://img.shields.io/github/issues/jerbouma/financedatabase)](https://github.com/JerBouma/FinanceDatabase/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/JerBouma/FinanceDatabase?color=yellow)](https://github.com/JerBouma/FinanceDatabase/pulls)
+[![PYPI Version](https://img.shields.io/pypi/v/FinanceDatabase)](https://pypi.org/project/FinanceDatabase/)
+[![PYPI Downloads](https://img.shields.io/pypi/dm/FinanceDatabase)](https://pypi.org/project/FinanceDatabase/)
 
 Theories and research about the stock market have stated that the semi-strong form of market efficiency seems to hold.
-This means that all public information is accurately reflected in the price of an financial instrument.
+This means that all public information is accurately reflected in the price of a financial instrument.
 This makes the job of a portfolio manager primarily managing the desired risk appetite of the client and not explicitly
 trying to outperform the market. This fact in combination with Finance professionals all around the world looking for
 that 'edge' to make their investment decisions as profitable as possible, makes it so the average joe can not compete.
@@ -15,13 +20,44 @@ This allows the holder to spend limited time monitoring his holdings, therefore 
 With a large increase in ETFs available (over 5,000 in 2020), it can become difficult to make the best choice in
 what you wish to invest. There are many different providers (iShares, Vanguard, Invesco) as well as with changes
 to the underlying stocks (i.e. High Yield, Super Dividends, Equal Weighted). This is quickly reflected when looking
-for a S&P 500 ETF as there are over 20 different ETFs available.
+for a S&P 500 ETF as there are over 20 different ETFs available. With the package and program, I wish to make 
+investment decisions easier to make and manage.
 
-With this program, I wish to make investment decisions easier to make and manage.
+An example of the output can be found in the GIF below. This depicts several ETFs collected 
+from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs). 
 
-![](Images/programExample.png)
+![ThePassiveInvestor](https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor/master/Images/outputExample.gif)
 
-## Set-Up / Installation
+## Installation
+
+### Package
+The package can be installed via the following commands:
+
+1. `pip install ThePassiveInvestor`
+    * Alternatively, download this repository.
+2. (within Python) `import ThePassiveInvestor as pi`
+
+The functions within this package are:
+- `collect_data(ticker)` - collects the most important data for ETFs as listed in the [Functionality](#Functionality) 
+  section.
+- `create_ETF_report(tickers, filename)` - uses collect_data to create an Excel report with data, as 
+depicted in the GIF above, per sheet for each ticker.
+  
+Therefore, if you wish to collect data on an ETF or create a report of a selection of ETFs you can use the following 
+example:
+````
+import ThePassiveInvestor as pi
+
+# Collect data from a specific ETF
+vanguard_sp500 = pi.collect_data('VOO')
+
+# Create a report from a list of ETFs
+etf_list = ['VOO', 'QQQ', 'ARKG', 'VUG', 'SCHA', 'VWO']
+pi.create_ETF_report(etf_list, 'Popular ETFs.xlsx')
+````
+
+
+### Program
 Installing the program and running an analysis:
 
 1. Download the most recent release [here](https://github.com/JerBouma/ThePassiveInvestor/releases).
@@ -40,9 +76,17 @@ the program does this for you. However, it does not create folders.
 5. Run the program, this takes less than a minute to complete.
 6. Analyse the Excelfile created
 
+The input should either be an Excel File (with solely tickers in it) or via Yahoo Finance's ETF or Mutual Fund 
+Screener (see [here](https://finance.yahoo.com/screener/etf/new) 
+and [here](https://finance.yahoo.com/screener/mutualfund/new)). Note that the program <i>can not</i>
+handle stocks, bonds or anything else that is not a fund. This is because the data used is only available
+for funds and equity investing is not considered Passive Investing. 
+
+![ThePassiveInvestor](https://raw.githubusercontent.com/JerBouma/ThePassiveInvestor/master/Images/programExample.png)
+
 ## Functionality
-The program is able to output an overview of each fund on a seperate sheet. In this overview the following data
-is shown:
+The program and package are able to output an overview of each fund on a separate sheet. In this overview the 
+following data is shown:
 * The title of the fund
 * A summary about the fund's purpose/goal
 * Sector Holdings (% in each sector)
@@ -67,17 +111,6 @@ is shown:
 * Last five annual returns
 * Graph depicting the adjusted close prices over the last 10 years
 * Last 10 years of adjusted close prices for all Tickers (hidden sheet)
-
-The input should either be an Excel File (with solely tickers in it) or via Yahoo Finance's ETF or
-Mutual Fund Screener (see [here](https://finance.yahoo.com/screener/etf/new)
-and [here](https://finance.yahoo.com/screener/mutualfund/new)). Note that the program <i>can not</i>
-handle stocks, bonds or anything else that is not a fund. This is because the data used is only available
-for funds and equity investing is not considered Passive Investing. 
-
-An example of the output can be found in the GIF below. This depicts several ETFs
-collected from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs). 
-
-![](Images/outputExample.gif)
 
 ## Contribution
 Projects are bound to have (small) errors and can always be improved. Therefore,
@@ -117,6 +150,5 @@ The following issue is known:
 Alternatively, download the latest release which fixes this issue.
  
 ## Disclaimer
-While the program allows you to make financial decisions more easily,
-it explicitely <i>does not</i> make the decisions for you. Therefore, these
-decisions remain your own and I am not responsible for any losses (or gains) made.
+While the program allows you to make financial decisions more easily, it explicitly <i>does not</i> make the 
+decisions for you. Therefore, these decisions remain your own and I am not responsible for any losses (or gains) made.
