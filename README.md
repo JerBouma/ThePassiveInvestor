@@ -33,9 +33,9 @@ from [the Top ETFs according to Yahoo Finance](https://finance.yahoo.com/etfs).
 ### Package
 The package can be installed via the following commands:
 
-1. `pip install ThePassiveInvestor`
+1. `pip install thepassiveinvestor`
     * Alternatively, download this repository.
-2. (within Python) `import ThePassiveInvestor as pi`
+2. (within Python) `import thepassiveinvestor as pi`
 
 The functions within this package are:
 - `collect_data(ticker)` - collects the most important data for ETFs as listed in the [Functionality](#Functionality) 

@@ -4,9 +4,9 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="ThePassiveInvestor",
+    name="thepassiveinvestor",
     packages=["thepassiveinvestor"],
-    version="1.0.6",
+    version="1.0.8",
     license="MIT",
     description="Passive Investing for the Average Joe.",
     author="JerBouma",
