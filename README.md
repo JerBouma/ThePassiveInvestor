@@ -46,7 +46,7 @@ depicted in the GIF above, per sheet for each ticker.
 Therefore, if you wish to collect data on an ETF or create a report of a selection of ETFs you can use the following 
 example:
 ````
-import ThePassiveInvestor as pi
+import thepassiveinvestor as pi
 
 # Collect data from a specific ETF
 vanguard_sp500 = pi.collect_data('VOO')
