@@ -1,5 +1,6 @@
 import pandas as pd
 import yfinance as yf
+import os
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
 from openpyxl.utils.dataframe import dataframe_to_rows
@@ -44,10 +45,7 @@ def create_ETF_report(tickers, filename, folder=None):
     if filename[-4:] not in ['xlsx', 'xlsm', 'xlsb']:
         filename = f"{filename}.xlsx"
     if folder is not None:
-        if folder[-1] != "\\":
-            filename = f"{folder}\\{filename}"
-        else:
-            filename = f"{folder}{filename}"
+        filename = os.path.join(folder, filename)
 
     workbook.create_sheet(title='Stock Data')
     stock_sheet = workbook['Stock Data']

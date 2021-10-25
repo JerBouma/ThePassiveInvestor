@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="thepassiveinvestor",
     packages=["thepassiveinvestor"],
-    version="1.0.8",
+    version="1.0.9",
     license="MIT",
     description="Passive Investing for the Average Joe.",
     author="JerBouma",
@@ -14,7 +14,7 @@ setuptools.setup(
     url="https://github.com/JerBouma/ThePassiveInvestor",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    keywords=["passive", "invesing", "finance", "etfs"],
+    keywords=["passive", "investing", "finance", "etfs"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Financial and Insurance Industry",
