@@ -96,11 +96,13 @@ def create_ETF_report(tickers, filename, folder=None):
         sheet['L4'].value = 'Key Characteristics'
         sheet['L4'].font = Font(bold=True)
 
-        data_placer(ticker_data['sector_holdings'], sheet, 5, 2, 'B', 'C')
+        data_placer(ticker_data['sector_holdings'], sheet, 5, 2, 'B', 'C',
+                    value_formatting_style='percentage')
         data_placer(ticker_data['company_holdings'], sheet, 18, 2, 'B', 'C',
-                    change_key_dimensions=False)
+                    change_key_dimensions=False, value_formatting_style='percentage')
         data_placer(ticker_data['annual_returns'], sheet, 22, 12, 'L', 'M',
-                    change_key_dimensions=False, change_value_dimensions=False)
+                    change_key_dimensions=False, change_value_dimensions=False,
+                    value_formatting_style='percentage')
         data_placer(ticker_data['key_characteristics'], sheet, 5, 12, 'L', 'M',
                     horizontal_alignment_value='left')
 

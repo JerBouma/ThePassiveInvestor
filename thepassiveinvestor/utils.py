@@ -5,10 +5,12 @@ from openpyxl.chart import Reference, LineChart
 from openpyxl.chart.axis import DateAxis
 from openpyxl.drawing.image import Image as ExcelImage
 from openpyxl.styles import Alignment, Font
+from openpyxl.styles.numbers import FORMAT_PERCENTAGE_00
 
 
 def data_placer(data, sheet, starting_row, column, column_key, column_value, horizontal_alignment_key=False,
-                horizontal_alignment_value=False, change_key_dimensions=True, change_value_dimensions=True):
+                horizontal_alignment_value=False, change_key_dimensions=True, change_value_dimensions=True,
+                value_formatting_style=None):
     """
     Description
     ----
@@ -36,6 +38,8 @@ def data_placer(data, sheet, starting_row, column, column_key, column_value, hor
         Increase the width of the cell of the key of the dictionary.
     change_value_dimensions (boolean, default is True):
         Increase the width of the cell of the key of the dictionary.
+    value_formatting_style (string, default is None):
+        Option to change the formatting style of the value. Currently only works with 'percentage'.
 
     Output
     ----
@@ -45,6 +49,13 @@ def data_placer(data, sheet, starting_row, column, column_key, column_value, hor
     max_length_value = 0
 
     for key, value in data.items():
+        if value_formatting_style == 'percentage':
+            try:
+                value = float(value[:-1]) / 100
+                sheet[f"{column_value}{starting_row}"].number_format = FORMAT_PERCENTAGE_00
+            except ValueError:
+                pass
+
         key_position = sheet.cell(column=column, row=starting_row, value=key)
         value_position = sheet.cell(column=column + 1, row=starting_row, value=value)
 
