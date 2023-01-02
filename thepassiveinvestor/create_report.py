@@ -32,7 +32,7 @@ def create_ETF_report(tickers, filename, folder=None):
     Returns an Excel file with the given filename with data on each ticker.
     """
     workbook = Workbook()
-    stock_data = yf.download(tickers, period='10y', progress=False)['Adj Close']
+    stock_data = yf.download(tickers, period="10y", progress=False)["Adj Close"]
 
     if isinstance(tickers, str):
         tickers = [tickers]
@@ -42,17 +42,17 @@ def create_ETF_report(tickers, filename, folder=None):
     elif isinstance(stock_data, pd.Series):
         stock_data = pd.DataFrame(stock_data)
 
-    if filename[-4:] not in ['xlsx', 'xlsm', 'xlsb']:
+    if filename[-4:] not in ["xlsx", "xlsm", "xlsb"]:
         filename = f"{filename}.xlsx"
     if folder is not None:
         filename = os.path.join(folder, filename)
 
-    workbook.create_sheet(title='Stock Data')
-    stock_sheet = workbook['Stock Data']
+    workbook.create_sheet(title="Stock Data")
+    stock_sheet = workbook["Stock Data"]
 
     for row in dataframe_to_rows(stock_data, index=True, header=True):
         stock_sheet.append(row)
-    stock_sheet.column_dimensions['A'].width = len(str(stock_data.index[0]))
+    stock_sheet.column_dimensions["A"].width = len(str(stock_data.index[0]))
     stock_sheet.sheet_view.showGridLines = False
 
     min_col, min_row, max_col = 1, 3, 1
@@ -65,75 +65,173 @@ def create_ETF_report(tickers, filename, folder=None):
         try:
             ticker_data = collect_data(ticker)
         except (KeyError, TypeError):
-            sheet['B2'].value = "No data available"
-            sheet['B2'].font = Font(italic=True)
+            sheet["B2"].value = "No data available"
+            sheet["B2"].font = Font(italic=True)
             continue
 
-        sheet['B2'].value = ticker_data['long_name']
-        sheet['B2'].font = Font(bold=True, size=15)
-        sheet['B2'].alignment = Alignment(horizontal='left')
-        sheet.merge_cells('B2:M2')
+        sheet["B2"].value = ticker_data["long_name"]
+        sheet["B2"].font = Font(bold=True, size=15)
+        sheet["B2"].alignment = Alignment(horizontal="left")
+        sheet.merge_cells("B2:M2")
 
-        sheet['B3'].value = ticker_data['summary']
-        sheet['B3'].alignment = Alignment(wrap_text=True, vertical='center', horizontal='left')
-        sheet.merge_cells('B3:M3')
+        sheet["B3"].value = ticker_data["summary"]
+        sheet["B3"].alignment = Alignment(
+            wrap_text=True, vertical="center", horizontal="left"
+        )
+        sheet.merge_cells("B3:M3")
         sheet.row_dimensions[3].height = 100
 
-        sheet['B4'].value = "Sector Holdings"
-        sheet['B4'].font = Font(bold=True)
+        sheet["B4"].value = "Sector Holdings"
+        sheet["B4"].font = Font(bold=True)
 
-        sheet['B17'].value = "Top Company Holdings"
-        sheet['B17'].font = Font(bold=True)
+        sheet["B17"].value = "Top Company Holdings"
+        sheet["B17"].font = Font(bold=True)
 
-        sheet['E19'].value = "Risk Statistics"
-        sheet['E19'].font = Font(bold=True)
-        sheet['E19'].alignment = Alignment(horizontal='center')
-        sheet.merge_cells('E19:J19')
+        sheet["E19"].value = "Risk Statistics"
+        sheet["E19"].font = Font(bold=True)
+        sheet["E19"].alignment = Alignment(horizontal="center")
+        sheet.merge_cells("E19:J19")
 
-        sheet['L21'].value = "Last Five Annual Returns"
-        sheet['L21'].font = Font(bold=True)
+        sheet["L21"].value = "Last Five Annual Returns"
+        sheet["L21"].font = Font(bold=True)
 
-        sheet['L4'].value = 'Key Characteristics'
-        sheet['L4'].font = Font(bold=True)
+        sheet["L4"].value = "Key Characteristics"
+        sheet["L4"].font = Font(bold=True)
 
-        data_placer(ticker_data['sector_holdings'], sheet, 5, 2, 'B', 'C',
-                    value_formatting_style='percentage')
-        data_placer(ticker_data['company_holdings'], sheet, 18, 2, 'B', 'C',
-                    change_key_dimensions=False, value_formatting_style='percentage')
-        data_placer(ticker_data['annual_returns'], sheet, 22, 12, 'L', 'M',
-                    change_key_dimensions=False, change_value_dimensions=False,
-                    value_formatting_style='percentage')
-        data_placer(ticker_data['key_characteristics'], sheet, 5, 12, 'L', 'M',
-                    horizontal_alignment_value='left')
+        data_placer(
+            ticker_data["sector_holdings"],
+            sheet,
+            5,
+            2,
+            "B",
+            "C",
+            value_formatting_style="percentage",
+        )
+        data_placer(
+            ticker_data["company_holdings"],
+            sheet,
+            18,
+            2,
+            "B",
+            "C",
+            change_key_dimensions=False,
+            value_formatting_style="percentage",
+        )
+        data_placer(
+            ticker_data["annual_returns"],
+            sheet,
+            22,
+            12,
+            "L",
+            "M",
+            change_key_dimensions=False,
+            change_value_dimensions=False,
+            value_formatting_style="percentage",
+        )
+        data_placer(
+            ticker_data["key_characteristics"],
+            sheet,
+            5,
+            12,
+            "L",
+            "M",
+            horizontal_alignment_value="left",
+        )
 
         try:
-            data_placer(ticker_data['risk_data']['3y'], sheet, 20, 5, 'E', 'F', False, 'right', True, False)
+            data_placer(
+                ticker_data["risk_data"]["3y"],
+                sheet,
+                20,
+                5,
+                "E",
+                "F",
+                False,
+                "right",
+                True,
+                False,
+            )
         except KeyError:
             risk_data = EMPTY_RISK_STATISTICS
-            risk_data['year'] = '3y'
-            data_placer(ticker_data['risk_data'], sheet, 20, 5, 'E', 'F', False, 'right', True, False)
+            risk_data["year"] = "3y"
+            data_placer(
+                ticker_data["risk_data"],
+                sheet,
+                20,
+                5,
+                "E",
+                "F",
+                False,
+                "right",
+                True,
+                False,
+            )
         try:
-            data_placer(ticker_data['risk_data']['5y'], sheet, 20, 7, 'G', 'H', False, 'right', True, False)
+            data_placer(
+                ticker_data["risk_data"]["5y"],
+                sheet,
+                20,
+                7,
+                "G",
+                "H",
+                False,
+                "right",
+                True,
+                False,
+            )
         except KeyError:
             risk_data = EMPTY_RISK_STATISTICS
-            risk_data['year'] = '5y'
-            data_placer(ticker_data['risk_data'], sheet, 20, 7, 'G', 'H', False, 'right', True, False)
+            risk_data["year"] = "5y"
+            data_placer(
+                ticker_data["risk_data"],
+                sheet,
+                20,
+                7,
+                "G",
+                "H",
+                False,
+                "right",
+                True,
+                False,
+            )
         try:
-            data_placer(ticker_data['risk_data']['10y'], sheet, 20, 9, 'I', 'J', False, 'right', True, False)
+            data_placer(
+                ticker_data["risk_data"]["10y"],
+                sheet,
+                20,
+                9,
+                "I",
+                "J",
+                False,
+                "right",
+                True,
+                False,
+            )
         except KeyError:
             risk_data = EMPTY_RISK_STATISTICS
-            risk_data['year'] = '10y'
-            data_placer(ticker_data['risk_data'], sheet, 20, 9, 'I', 'J', False, 'right', True, False)
+            risk_data["year"] = "10y"
+            data_placer(
+                ticker_data["risk_data"],
+                sheet,
+                20,
+                9,
+                "I",
+                "J",
+                False,
+                "right",
+                True,
+                False,
+            )
 
-        image_placer(ticker_data['image_URL'], sheet, 'L12')
+        image_placer(ticker_data["image_URL"], sheet, "L12")
         graph_placer(stock_sheet, stock_data, sheet, min_col, min_row, max_col, "E4")
         min_col += 1
         max_col += 1
 
     try:
-        workbook.remove(workbook['Sheet'])
+        workbook.remove(workbook["Sheet"])
     except KeyError:
         pass
 
-    stock_sheet.sheet_state = 'hidden'
+    stock_sheet.sheet_state = "hidden"
     workbook.save(filename)
