@@ -8,9 +8,19 @@ from openpyxl.styles import Alignment, Font
 from openpyxl.styles.numbers import FORMAT_PERCENTAGE_00
 
 
-def data_placer(data, sheet, starting_row, column, column_key, column_value, horizontal_alignment_key=False,
-                horizontal_alignment_value=False, change_key_dimensions=True, change_value_dimensions=True,
-                value_formatting_style=None):
+def data_placer(
+    data,
+    sheet,
+    starting_row,
+    column,
+    column_key,
+    column_value,
+    horizontal_alignment_key=False,
+    horizontal_alignment_value=False,
+    change_key_dimensions=True,
+    change_value_dimensions=True,
+    value_formatting_style=None,
+):
     """
     Description
     ----
@@ -49,10 +59,12 @@ def data_placer(data, sheet, starting_row, column, column_key, column_value, hor
     max_length_value = 0
 
     for key, value in data.items():
-        if value_formatting_style == 'percentage':
+        if value_formatting_style == "percentage":
             try:
                 value = float(value[:-1]) / 100
-                sheet[f"{column_value}{starting_row}"].number_format = FORMAT_PERCENTAGE_00
+                sheet[
+                    f"{column_value}{starting_row}"
+                ].number_format = FORMAT_PERCENTAGE_00
             except ValueError:
                 pass
 
@@ -104,7 +116,7 @@ def image_placer(image_url, sheet, location):
     """
     try:
         http = urllib3.PoolManager()
-        image_location = http.request('GET', image_url)
+        image_location = http.request("GET", image_url)
         image_file = io.BytesIO(image_location.data)
         image = ExcelImage(image_file)
         sheet.add_image(image, location)
@@ -138,8 +150,16 @@ def graph_placer(stock_sheet, stock_data, sheet, min_col, min_row, max_col, loca
     ----
     Fills in the sheet with the selected graph at the specified location.
     """
-    data = Reference(stock_sheet, min_col=min_col + 1, min_row=min_row, max_col=max_col + 1, max_row=len(stock_data))
-    cats = Reference(stock_sheet, min_col=1, min_row=3, max_col=1, max_row=len(stock_data))
+    data = Reference(
+        stock_sheet,
+        min_col=min_col + 1,
+        min_row=min_row,
+        max_col=max_col + 1,
+        max_row=len(stock_data),
+    )
+    cats = Reference(
+        stock_sheet, min_col=1, min_row=3, max_col=1, max_row=len(stock_data)
+    )
 
     chart = LineChart()
     chart.title = None
@@ -147,7 +167,7 @@ def graph_placer(stock_sheet, stock_data, sheet, min_col, min_row, max_col, loca
     chart.y_axis.title = "Stock Price"
     chart.y_axis.crossAx = 500
     chart.x_axis = DateAxis()
-    chart.x_axis.number_format = 'yyyy'
+    chart.x_axis.number_format = "yyyy"
     chart.x_axis.title = "Date"
 
     chart.add_data(data)
