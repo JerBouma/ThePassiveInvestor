@@ -125,9 +125,7 @@ pi.create_ETF_report(etf_list, 'Popular ETFs.xlsx')
 
 Which returns the following:
 
-
-
-
+<img width="1512" alt="Screenshot 2023-01-19 at 13 26 48" src="https://user-images.githubusercontent.com/46355364/213443231-ee125c24-3c70-4978-87fd-783c57eacbf2.png">
 
 ## Functionality
 
