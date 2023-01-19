@@ -1,11 +1,12 @@
 from datetime import datetime
+import pandas as pd
 
 import yfinance as yf
 
 from .config import DEFAULT_KEY_STATISTICS_CHOICES, DEFAULT_SUMMARY_DETAIL_CHOICES
 
 
-def collect_data(ticker):
+def collect_data(tickers, comparison=False):
     """
     Description
     ----
@@ -15,7 +16,7 @@ def collect_data(ticker):
 
     Input
     ----
-    ticker (string)
+    ticker (string or list)
         A single ticker from an ETF (i.e. QQQ)
 
     Output
@@ -23,62 +24,116 @@ def collect_data(ticker):
     ticker_data (dictionary)
         Returns a dictionary with the most important data about the ticker.
     """
-    data = yf.Ticker(ticker).stats()
     ticker_data = {}
 
-    fund_performance = data["fundPerformance"]
-    top_holdings = data["topHoldings"]
-    default_key_statistics = data["defaultKeyStatistics"]
-    summary_detail = data["summaryDetail"]
+    if isinstance(tickers, str):
+        tickers = [tickers]
 
-    ticker_data["long_name"] = data["quoteType"]["longName"]
-    ticker_data["summary"] = data["assetProfile"]["longBusinessSummary"]
-    ticker_data["image_URL"] = data["fundProfile"]["styleBoxUrl"]
+    for ticker in tickers:
+        data = yf.Ticker(ticker).stats()
+        ticker_data[ticker] = {}
 
-    sector_data = top_holdings["sectorWeightings"]
-    ticker_data["sector_holdings"] = {}
+        fund_performance = data["fundPerformance"]
+        top_holdings = data["topHoldings"]
+        default_key_statistics = data["defaultKeyStatistics"]
+        summary_detail = data["summaryDetail"]
 
-    for sector in sector_data:
-        for key, value in sector.items():
-            ticker_data["sector_holdings"][key] = f"{str(round(value * 100, 2))}%"
+        ticker_data[ticker]["long_name"] = data["quoteType"]["longName"]
+        ticker_data[ticker]["summary"] = data["assetProfile"]["longBusinessSummary"]
+        ticker_data[ticker]["image_URL"] = data["fundProfile"]["styleBoxUrl"]
 
-    company_data = top_holdings["holdings"]
-    ticker_data["company_holdings"] = {}
+        sector_data = top_holdings["sectorWeightings"]
+        ticker_data[ticker]["sector_holdings"] = {}
 
-    for company in company_data:
-        ticker_data["company_holdings"][
-            company["holdingName"]
-        ] = f"{str(round(company['holdingPercent'] * 100, 2))}%"
+        for sector in sector_data:
+            for key, value in sector.items():
+                ticker_data[ticker]["sector_holdings"][
+                    key
+                ] = f"{str(round(value * 100, 2))}%"
 
-    annual_returns_data = fund_performance["annualTotalReturns"]["returns"][:6]
-    ticker_data["annual_returns"] = {}
+        company_data = top_holdings["holdings"]
+        ticker_data[ticker]["company_holdings"] = {}
 
-    for returns in annual_returns_data:
-        if returns["annualValue"] is None:
-            ticker_data["annual_returns"][returns["year"]] = "N/A"
-        else:
-            ticker_data["annual_returns"][
-                returns["year"]
-            ] = f"{str(round(returns['annualValue'] * 100, 2))}%"
+        for company in company_data:
+            ticker_data[ticker]["company_holdings"][
+                company["holdingName"]
+            ] = f"{str(round(company['holdingPercent'] * 100, 2))}%"
 
-    risk_statistics = fund_performance["riskOverviewStatistics"]["riskStatistics"]
-    ticker_data["risk_data"] = {}
+        annual_returns_data = fund_performance["annualTotalReturns"]["returns"][:6]
+        ticker_data[ticker]["annual_returns"] = {}
 
-    for risk in risk_statistics:
-        ticker_data["risk_data"][risk["year"]] = risk
+        for returns in annual_returns_data:
+            if returns["annualValue"] is None:
+                ticker_data[ticker]["annual_returns"][returns["year"]] = "N/A"
+            else:
+                ticker_data[ticker]["annual_returns"][
+                    returns["year"]
+                ] = f"{str(round(returns['annualValue'] * 100, 2))}%"
 
-    ticker_data["key_characteristics"] = {}
+        risk_statistics = fund_performance["riskOverviewStatistics"]["riskStatistics"]
+        ticker_data[ticker]["risk_data"] = {}
 
-    for option in DEFAULT_KEY_STATISTICS_CHOICES:
-        if option == "fundInceptionDate":
-            ticker_data["key_characteristics"][option] = default_key_statistics[option]
-            ticker_data["key_characteristics"][option] = datetime.fromtimestamp(
-                ticker_data["key_characteristics"][option]
-            ).strftime("%Y-%m-%d")
-        else:
-            ticker_data["key_characteristics"][option] = default_key_statistics[option]
+        for risk in risk_statistics:
+            ticker_data[ticker]["risk_data"][risk["year"]] = risk
 
-    for option in DEFAULT_SUMMARY_DETAIL_CHOICES:
-        ticker_data["key_characteristics"][option] = summary_detail[option]
+        ticker_data[ticker]["key_characteristics"] = {}
+
+        for option in DEFAULT_KEY_STATISTICS_CHOICES:
+            if option == "fundInceptionDate":
+                ticker_data[ticker]["key_characteristics"][
+                    option
+                ] = default_key_statistics[option]
+                ticker_data[ticker]["key_characteristics"][
+                    option
+                ] = datetime.fromtimestamp(
+                    ticker_data[ticker]["key_characteristics"][option]
+                ).strftime(
+                    "%Y-%m-%d"
+                )
+            else:
+                ticker_data[ticker]["key_characteristics"][
+                    option
+                ] = default_key_statistics[option]
+
+        for option in DEFAULT_SUMMARY_DETAIL_CHOICES:
+            ticker_data[ticker]["key_characteristics"][option] = summary_detail[option]
+
+    if comparison:
+        etf_comparison = []
+
+        for ticker in tickers:
+            for risk_year in ["3y", "5y", "10y"]:
+                ticker_data[ticker][f"risk_data_{risk_year}"] = ticker_data[ticker][
+                    "risk_data"
+                ][risk_year]
+            for x in [
+                "long_name",
+                "summary",
+                "image_URL",
+                "company_holdings",
+                "risk_data",
+            ]:
+                ticker_data[ticker].pop(x)
+
+            ticker_dataframe = pd.DataFrame.from_dict(
+                {
+                    (i, j): ticker_data[ticker][i][j]
+                    for i in ticker_data[ticker].keys()
+                    for j in ticker_data[ticker][i].keys()
+                },
+                orient="index",
+                columns=[ticker],
+            )
+
+            ticker_dataframe.index = pd.MultiIndex.from_tuples(ticker_dataframe.index)
+
+            etf_comparison.append(ticker_dataframe)
+
+        etf_comparison_df = pd.concat(etf_comparison, axis="columns")
+
+        return etf_comparison_df
+
+    if len(tickers) == 1:
+        ticker_data = ticker_data[tickers[0]]
 
     return ticker_data

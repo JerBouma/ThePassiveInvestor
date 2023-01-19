@@ -6,7 +6,13 @@ from openpyxl.styles import Font, Alignment
 from openpyxl.utils.dataframe import dataframe_to_rows
 
 from .collect_data import collect_data
-from .config import EMPTY_RISK_STATISTICS
+from .config import (
+    DEFAULT_KEY_STATISTICS_CHOICES,
+    DEFAULT_SUMMARY_DETAIL_CHOICES,
+    SECTOR_CATEGORY_MAPPING,
+    EMPTY_RISK_STATISTICS,
+    RISK_STATISTICS_CATEGORY_MAPPING,
+)
 from .utils import data_placer, image_placer, graph_placer
 
 
@@ -32,7 +38,9 @@ def create_ETF_report(tickers, filename, folder=None):
     Returns an Excel file with the given filename with data on each ticker.
     """
     workbook = Workbook()
-    stock_data = yf.download(tickers, period="10y", progress=False)["Adj Close"]
+    stock_data = yf.download(tickers, period="10y", progress=False, ignore_tz=True)[
+        "Adj Close"
+    ]
 
     if isinstance(tickers, str):
         tickers = [tickers]
@@ -98,6 +106,13 @@ def create_ETF_report(tickers, filename, folder=None):
         sheet["L4"].value = "Key Characteristics"
         sheet["L4"].font = Font(bold=True)
 
+        for sector in ticker_data["sector_holdings"]:
+            if sector in SECTOR_CATEGORY_MAPPING:
+                new_sector = SECTOR_CATEGORY_MAPPING[sector]
+                ticker_data["sector_holdings"][new_sector] = ticker_data[
+                    "sector_holdings"
+                ].pop(sector)
+
         data_placer(
             ticker_data["sector_holdings"],
             sheet,
@@ -105,7 +120,7 @@ def create_ETF_report(tickers, filename, folder=None):
             2,
             "B",
             "C",
-            value_formatting_style="percentage",
+            value_percentage=True,
         )
         data_placer(
             ticker_data["company_holdings"],
@@ -115,7 +130,7 @@ def create_ETF_report(tickers, filename, folder=None):
             "B",
             "C",
             change_key_dimensions=False,
-            value_formatting_style="percentage",
+            value_percentage=True,
         )
         data_placer(
             ticker_data["annual_returns"],
@@ -126,8 +141,22 @@ def create_ETF_report(tickers, filename, folder=None):
             "M",
             change_key_dimensions=False,
             change_value_dimensions=False,
-            value_formatting_style="percentage",
+            key_number=True,
+            value_percentage=True,
         )
+
+        for key in list(ticker_data["key_characteristics"].keys()):
+            if key in DEFAULT_KEY_STATISTICS_CHOICES:
+                new_key = DEFAULT_KEY_STATISTICS_CHOICES[key]
+                ticker_data["key_characteristics"][new_key] = ticker_data[
+                    "key_characteristics"
+                ].pop(key)
+            elif key in DEFAULT_SUMMARY_DETAIL_CHOICES:
+                new_key = DEFAULT_SUMMARY_DETAIL_CHOICES[key]
+                ticker_data["key_characteristics"][new_key] = ticker_data[
+                    "key_characteristics"
+                ].pop(key)
+
         data_placer(
             ticker_data["key_characteristics"],
             sheet,
@@ -139,6 +168,13 @@ def create_ETF_report(tickers, filename, folder=None):
         )
 
         try:
+            for risk_metric in list(ticker_data["risk_data"]["3y"].keys()):
+                if risk_metric in RISK_STATISTICS_CATEGORY_MAPPING:
+                    new_risk_metric = RISK_STATISTICS_CATEGORY_MAPPING[risk_metric]
+                    ticker_data["risk_data"]["3y"][new_risk_metric] = ticker_data[
+                        "risk_data"
+                    ]["3y"].pop(risk_metric)
+
             data_placer(
                 ticker_data["risk_data"]["3y"],
                 sheet,
@@ -167,6 +203,13 @@ def create_ETF_report(tickers, filename, folder=None):
                 False,
             )
         try:
+            for risk_metric in list(ticker_data["risk_data"]["5y"].keys()):
+                if risk_metric in RISK_STATISTICS_CATEGORY_MAPPING:
+                    new_risk_metric = RISK_STATISTICS_CATEGORY_MAPPING[risk_metric]
+                    ticker_data["risk_data"]["5y"][new_risk_metric] = ticker_data[
+                        "risk_data"
+                    ]["5y"].pop(risk_metric)
+
             data_placer(
                 ticker_data["risk_data"]["5y"],
                 sheet,
@@ -195,6 +238,13 @@ def create_ETF_report(tickers, filename, folder=None):
                 False,
             )
         try:
+            for risk_metric in list(ticker_data["risk_data"]["10y"].keys()):
+                if risk_metric in RISK_STATISTICS_CATEGORY_MAPPING:
+                    new_risk_metric = RISK_STATISTICS_CATEGORY_MAPPING[risk_metric]
+                    ticker_data["risk_data"]["10y"][new_risk_metric] = ticker_data[
+                        "risk_data"
+                    ]["10y"].pop(risk_metric)
+
             data_placer(
                 ticker_data["risk_data"]["10y"],
                 sheet,

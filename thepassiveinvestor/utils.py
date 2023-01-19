@@ -19,7 +19,8 @@ def data_placer(
     horizontal_alignment_value=False,
     change_key_dimensions=True,
     change_value_dimensions=True,
-    value_formatting_style=None,
+    key_number=None,
+    value_percentage=None,
 ):
     """
     Description
@@ -59,12 +60,17 @@ def data_placer(
     max_length_value = 0
 
     for key, value in data.items():
-        if value_formatting_style == "percentage":
+        if value_percentage:
             try:
                 value = float(value[:-1]) / 100
                 sheet[
                     f"{column_value}{starting_row}"
                 ].number_format = FORMAT_PERCENTAGE_00
+            except ValueError:
+                pass
+        if key_number:
+            try:
+                key = int(key)
             except ValueError:
                 pass
 
