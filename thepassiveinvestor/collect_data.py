@@ -6,7 +6,7 @@ import yfinance as yf
 from .config import DEFAULT_KEY_STATISTICS_CHOICES, DEFAULT_SUMMARY_DETAIL_CHOICES
 
 
-def collect_data(tickers, comparison=False):
+def collect_data(tickers, comparison=False, surpress_print=False):
     """
     Description
     ----
@@ -30,78 +30,82 @@ def collect_data(tickers, comparison=False):
         tickers = [tickers]
 
     for ticker in tickers:
-        data = yf.Ticker(ticker).stats()
-        ticker_data[ticker] = {}
+        try:
+            data = yf.Ticker(ticker).stats()
+            ticker_data[ticker] = {}
 
-        fund_performance = data["fundPerformance"]
-        top_holdings = data["topHoldings"]
-        default_key_statistics = data["defaultKeyStatistics"]
-        summary_detail = data["summaryDetail"]
+            fund_performance = data["fundPerformance"]
+            top_holdings = data["topHoldings"]
+            default_key_statistics = data["defaultKeyStatistics"]
+            summary_detail = data["summaryDetail"]
 
-        ticker_data[ticker]["long_name"] = data["quoteType"]["longName"]
-        ticker_data[ticker]["summary"] = data["assetProfile"]["longBusinessSummary"]
-        ticker_data[ticker]["image_URL"] = data["fundProfile"]["styleBoxUrl"]
+            ticker_data[ticker]["long_name"] = data["quoteType"]["longName"]
+            ticker_data[ticker]["summary"] = data["assetProfile"]["longBusinessSummary"]
+            ticker_data[ticker]["image_URL"] = data["fundProfile"]["styleBoxUrl"]
 
-        sector_data = top_holdings["sectorWeightings"]
-        ticker_data[ticker]["sector_holdings"] = {}
+            sector_data = top_holdings["sectorWeightings"]
+            ticker_data[ticker]["sector_holdings"] = {}
 
-        for sector in sector_data:
-            for key, value in sector.items():
-                ticker_data[ticker]["sector_holdings"][
-                    key
-                ] = f"{str(round(value * 100, 2))}%"
+            for sector in sector_data:
+                for key, value in sector.items():
+                    ticker_data[ticker]["sector_holdings"][
+                        key
+                    ] = f"{str(round(value * 100, 2))}%"
 
-        company_data = top_holdings["holdings"]
-        ticker_data[ticker]["company_holdings"] = {}
+            company_data = top_holdings["holdings"]
+            ticker_data[ticker]["company_holdings"] = {}
 
-        for company in company_data:
-            ticker_data[ticker]["company_holdings"][
-                company["holdingName"]
-            ] = f"{str(round(company['holdingPercent'] * 100, 2))}%"
+            for company in company_data:
+                ticker_data[ticker]["company_holdings"][
+                    company["holdingName"]
+                ] = f"{str(round(company['holdingPercent'] * 100, 2))}%"
 
-        annual_returns_data = fund_performance["annualTotalReturns"]["returns"][:6]
-        ticker_data[ticker]["annual_returns"] = {}
+            annual_returns_data = fund_performance["annualTotalReturns"]["returns"][:6]
+            ticker_data[ticker]["annual_returns"] = {}
 
-        for returns in annual_returns_data:
-            if returns["annualValue"] is None:
-                ticker_data[ticker]["annual_returns"][returns["year"]] = "N/A"
-            else:
-                ticker_data[ticker]["annual_returns"][
-                    returns["year"]
-                ] = f"{str(round(returns['annualValue'] * 100, 2))}%"
+            for returns in annual_returns_data:
+                if returns["annualValue"] is None:
+                    ticker_data[ticker]["annual_returns"][returns["year"]] = "N/A"
+                else:
+                    ticker_data[ticker]["annual_returns"][
+                        returns["year"]
+                    ] = f"{str(round(returns['annualValue'] * 100, 2))}%"
 
-        risk_statistics = fund_performance["riskOverviewStatistics"]["riskStatistics"]
-        ticker_data[ticker]["risk_data"] = {}
+            risk_statistics = fund_performance["riskOverviewStatistics"]["riskStatistics"]
+            ticker_data[ticker]["risk_data"] = {}
 
-        for risk in risk_statistics:
-            ticker_data[ticker]["risk_data"][risk["year"]] = risk
+            for risk in risk_statistics:
+                ticker_data[ticker]["risk_data"][risk["year"]] = risk
 
-        ticker_data[ticker]["key_characteristics"] = {}
+            ticker_data[ticker]["key_characteristics"] = {}
 
-        for option in DEFAULT_KEY_STATISTICS_CHOICES:
-            if option == "fundInceptionDate":
-                ticker_data[ticker]["key_characteristics"][
-                    option
-                ] = default_key_statistics[option]
-                ticker_data[ticker]["key_characteristics"][
-                    option
-                ] = datetime.fromtimestamp(
-                    ticker_data[ticker]["key_characteristics"][option]
-                ).strftime(
-                    "%Y-%m-%d"
-                )
-            else:
-                ticker_data[ticker]["key_characteristics"][
-                    option
-                ] = default_key_statistics[option]
+            for option in DEFAULT_KEY_STATISTICS_CHOICES:
+                if option == "fundInceptionDate":
+                    ticker_data[ticker]["key_characteristics"][
+                        option
+                    ] = default_key_statistics[option]
+                    ticker_data[ticker]["key_characteristics"][
+                        option
+                    ] = datetime.fromtimestamp(
+                        ticker_data[ticker]["key_characteristics"][option]
+                    ).strftime(
+                        "%Y-%m-%d"
+                    )
+                else:
+                    ticker_data[ticker]["key_characteristics"][
+                        option
+                    ] = default_key_statistics[option]
 
-        for option in DEFAULT_SUMMARY_DETAIL_CHOICES:
-            ticker_data[ticker]["key_characteristics"][option] = summary_detail[option]
+            for option in DEFAULT_SUMMARY_DETAIL_CHOICES:
+                ticker_data[ticker]["key_characteristics"][option] = summary_detail[option]
+        except Exception:
+            if not surpress_print:
+                print(f"Not able to collect data for {ticker}")
 
     if comparison:
         etf_comparison = []
 
-        for ticker in tickers:
+        for ticker in list(ticker_data.keys()):
             for risk_year in ["3y", "5y", "10y"]:
                 ticker_data[ticker][f"risk_data_{risk_year}"] = ticker_data[ticker][
                     "risk_data"

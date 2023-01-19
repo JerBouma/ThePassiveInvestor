@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="thepassiveinvestor",
     packages=["thepassiveinvestor"],
-    version="1.1.1",
+    version="1.1.2",
     license="MIT",
     description="Passive Investing for the Average Joe.",
     author="JerBouma",
