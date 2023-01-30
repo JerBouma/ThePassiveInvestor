@@ -2,4 +2,4 @@ openpyxl>=3.0.9
 pandas>=1.5.2
 setuptools>=61.2.0
 urllib3>=1.26.9
-yfinance>=0.2.4
+yfinance>=0.2.9
