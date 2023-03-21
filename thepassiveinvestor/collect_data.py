@@ -1,7 +1,7 @@
 from datetime import datetime
 import pandas as pd
 
-import yfinance as yf
+from yahooquery import Ticker
 
 from .config import DEFAULT_KEY_STATISTICS_CHOICES, DEFAULT_SUMMARY_DETAIL_CHOICES
 
@@ -31,7 +31,7 @@ def collect_data(tickers, comparison=False, surpress_print=False):
 
     for ticker in tickers:
         try:
-            data = yf.Ticker(ticker).stats()
+            data = Ticker(ticker).all_modules[ticker]
             ticker_data[ticker] = {}
 
             fund_performance = data["fundPerformance"]
@@ -71,7 +71,9 @@ def collect_data(tickers, comparison=False, surpress_print=False):
                         returns["year"]
                     ] = f"{str(round(returns['annualValue'] * 100, 2))}%"
 
-            risk_statistics = fund_performance["riskOverviewStatistics"]["riskStatistics"]
+            risk_statistics = fund_performance["riskOverviewStatistics"][
+                "riskStatistics"
+            ]
             ticker_data[ticker]["risk_data"] = {}
 
             for risk in risk_statistics:
@@ -86,18 +88,19 @@ def collect_data(tickers, comparison=False, surpress_print=False):
                     ] = default_key_statistics[option]
                     ticker_data[ticker]["key_characteristics"][
                         option
-                    ] = datetime.fromtimestamp(
-                        ticker_data[ticker]["key_characteristics"][option]
-                    ).strftime(
-                        "%Y-%m-%d"
-                    )
+                    ] = datetime.strptime(
+                        ticker_data[ticker]["key_characteristics"][option],
+                        "%Y-%m-%d %H:%M:%S",
+                    ).date()
                 else:
                     ticker_data[ticker]["key_characteristics"][
                         option
                     ] = default_key_statistics[option]
 
             for option in DEFAULT_SUMMARY_DETAIL_CHOICES:
-                ticker_data[ticker]["key_characteristics"][option] = summary_detail[option]
+                ticker_data[ticker]["key_characteristics"][option] = summary_detail[
+                    option
+                ]
         except Exception:
             if not surpress_print:
                 print(f"Not able to collect data for {ticker}")

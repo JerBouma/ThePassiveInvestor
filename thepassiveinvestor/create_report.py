@@ -1,5 +1,5 @@
 import pandas as pd
-import yfinance as yf
+from yahooquery import Ticker
 import os
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
@@ -38,9 +38,9 @@ def create_ETF_report(tickers, filename, folder=None):
     Returns an Excel file with the given filename with data on each ticker.
     """
     workbook = Workbook()
-    stock_data = yf.download(tickers, period="10y", progress=False, ignore_tz=True)[
-        "Adj Close"
-    ]
+    stock_data = Ticker(tickers, asynchronous=True).history(period="10y")["adjclose"]
+
+    stock_data = stock_data.unstack(level=0)
 
     if isinstance(tickers, str):
         tickers = [tickers]

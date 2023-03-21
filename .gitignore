@@ -3,6 +3,8 @@ __pycache__/
 .idea
 *.py[cod]
 *$py.class
+*.xlsx
+*.ipynb
 
 # C extensions
 *.so
