@@ -39,8 +39,10 @@ def create_ETF_report(tickers, filename, folder=None):
     """
     workbook = Workbook()
     stock_data = Ticker(tickers, asynchronous=True).history(period="10y")["adjclose"]
-
     stock_data = stock_data.unstack(level=0)
+    
+    stock_data.index = pd.to_datetime(stock_data.index)
+    stock_data.index = stock_data.index.tz_localize(None)
 
     if isinstance(tickers, str):
         tickers = [tickers]
