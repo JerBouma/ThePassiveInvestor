@@ -7,7 +7,7 @@ setuptools.setup(
     name="thepassiveinvestor",
     packages=["thepassiveinvestor"],
     install_requires=["pandas", "yahooquery", "openpyxl"],
-    version="1.2.0",
+    version="1.2.1",
     license="MIT",
     description="Passive Investing for the Average Joe.",
     author="JerBouma",
