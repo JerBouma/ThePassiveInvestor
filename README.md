@@ -1,8 +1,7 @@
 # The Passive Investor
 
 [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-brightgreen?logo=buymeacoffee)](https://www.buymeacoffee.com/jerbouma)
-[![Issues](https://img.shields.io/github/issues/jerbouma/ThePassiveInvestor)](https://github.com/JerBouma/ThePassiveInvestor/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/JerBouma/ThePassiveInvestor?color=yellow)](https://github.com/JerBouma/ThePassiveInvestor/pulls)
+[![Website](https://img.shields.io/badge/Website-Learn%20more%20about%20me%20here-brightgreen?logo=ReadMe)](https://jeroenbouma.com/)
 [![PYPI Version](https://img.shields.io/pypi/v/ThePassiveInvestor)](https://pypi.org/project/ThePassiveInvestor/)
 [![PYPI Downloads](https://img.shields.io/pypi/dm/ThePassiveInvestor)](https://pypi.org/project/ThePassiveInvestor/)
 
