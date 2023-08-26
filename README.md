@@ -1,10 +1,10 @@
 # The Passive Investor
 
-[![GitHub Sponsors](https://img.shields.io/badge/Sponsor_the_Project-Donate-yellow?logo=github)](https://github.com/sponsors/JerBouma)
-[![Website](https://img.shields.io/badge/Read_More-website?logo=readme&label=Website)](https://jeroenbouma.com/)
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor_this_Project-grey?logo=github)](https://github.com/sponsors/JerBouma)
+[![Documentation](https://img.shields.io/badge/Documentation-grey?logo=readme)](https://www.jeroenbouma.com/projects/thepassiveinvestor)
 [![Discord](https://img.shields.io/badge/Chat-hello?logo=discord&label=Discord)](https://discord.gg/WS94QqH9Xb)
 [![PYPI Version](https://img.shields.io/pypi/v/ThePassiveInvestor)](https://pypi.org/project/ThePassiveInvestor/)
-[![PYPI Downloads](https://img.shields.io/pypi/dm/ThePassiveInvestor)](https://pypi.org/project/ThePassiveInvestor/)
+[![PYPI Downloads](https://static.pepy.tech/badge/thepassiveinvestor/month)](https://pepy.tech/project/thepassiveinvestor)
 
 Theories and research about the stock market have stated that the semi-strong form of market efficiency seems to hold. This means that all public information is accurately reflected in the price of a financial instrument. This makes the job of a portfolio manager primarily managing the desired risk appetite of the client and not explicitly trying to outperform the market. This fact in combination with Finance professionals all around the world looking for that 'edge' to make their investment decisions as profitable as possible, makes it so the average joe can not compete.
 
