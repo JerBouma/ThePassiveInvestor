@@ -1,8 +1,9 @@
 # The Passive Investor
 
 [![GitHub Sponsors](https://img.shields.io/badge/Sponsor_this_Project-grey?logo=github)](https://github.com/sponsors/JerBouma)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-grey?logo=buymeacoffee)](https://www.buymeacoffee.com/jerbouma)
+[![Twitter](https://img.shields.io/badge/Twitter-grey?logo=x)](https://twitter.com/JerBouma)
 [![Documentation](https://img.shields.io/badge/Documentation-grey?logo=readme)](https://www.jeroenbouma.com/projects/thepassiveinvestor)
-[![Discord](https://img.shields.io/badge/Chat-hello?logo=discord&label=Discord)](https://discord.gg/WS94QqH9Xb)
 [![PYPI Version](https://img.shields.io/pypi/v/ThePassiveInvestor)](https://pypi.org/project/ThePassiveInvestor/)
 [![PYPI Downloads](https://static.pepy.tech/badge/thepassiveinvestor/month)](https://pepy.tech/project/thepassiveinvestor)
 
@@ -139,6 +140,15 @@ The package outputs an overview of each fund on a separate sheet. In this overvi
 | Risk Metrics    | All metrics are displayed in an interval of 3, 5 and 10 years. This includes Jensen's Alpha, Beta, Mean Annual Return, R-squared, Standard Deviation, Sharpe Ratio and Treynor Ratio.                      |
 | Performance     | The last five annual returns of the fund as wel as a graph depicting the adjusted close prices over the last 10 years. The actual data for this graph is available on a hidden sheet.                      |
 
-## Contribution
+# Contact
+If you have any questions about the FinanceToolkit or would like to share with me what you have been working on, feel free to reach out to me via:
 
-Projects are bound to have (small) errors and can always be improved. Therefore, I highly encourage you to submit issues and create pull requests to improve the package.
+- **Website**: https://jeroenbouma.com/
+- **Twitter**: https://twitter.com/JerBouma
+- **LinkedIn:** https://www.linkedin.com/in/boumajeroen/
+- **Email:** jer.bouma@gmail.com
+- **Discord:** add me on Discord **`JerBouma`**
+
+If you'd like to support my efforts, either help me out by contributing to the package or [Sponsor Me](https://github.com/sponsors/JerBouma).
+
+[![Star History Chart](https://api.star-history.com/svg?repos=JerBouma/ThePassiveInvestor&type=Date)](https://star-history.com/#JerBouma/ThePassiveInvestor&Date)
