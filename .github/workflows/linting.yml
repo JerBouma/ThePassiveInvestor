@@ -1,0 +1,39 @@
+name: General Linting
+
+on:
+  pull_request:
+    types: [opened, synchronize, edited]
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  code-linting:
+    name: General Code Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          architecture: x64
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+      - run: |
+          poetry install
+      - run: poetry run black --diff --check thepassiveinvestor
+      - run: poetry run codespell
+      - run: poetry run ruff thepassiveinvestor
+      - run: poetry run pylint thepassiveinvestor
+
+  markdown-link-check:
+    name: Markdown Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Check out the code
+      - name: Lint Code Base
+        uses: docker://avtodev/markdown-lint:v1
