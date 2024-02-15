@@ -139,7 +139,7 @@ The package outputs an overview of each fund on a separate sheet. In this overvi
 | Characteristics | Inception date (the start of the fund), the category, assets under management (AUM), the denominated currency, net asset value (NAV), the latest close price and the Morningstar Style Box (if available). |
 | Holdings        | Sector holdings (% in each sector) and company holdings (top 10 companies with highest %).                                                                                                                 |
 | Risk Metrics    | All metrics are displayed in an interval of 3, 5 and 10 years. This includes Jensen's Alpha, Beta, Mean Annual Return, R-squared, Standard Deviation, Sharpe Ratio and Treynor Ratio.                      |
-| Performance     | The last five annual returns of the fund as wel as a graph depicting the adjusted close prices over the last 10 years. The actual data for this graph is available on a hidden sheet.                      |
+| Performance     | The last five annual returns of the fund as well as a graph depicting the adjusted close prices over the last 10 years. The actual data for this graph is available on a hidden sheet.                      |
 
 # Contact
 If you have any questions about the FinanceToolkit or would like to share with me what you have been working on, feel free to reach out to me via:
