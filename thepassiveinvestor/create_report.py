@@ -1,19 +1,24 @@
-import pandas as pd
-from yahooquery import Ticker
+"""Create Report Module"""
+
 import os
+
+import pandas as pd
 from openpyxl import Workbook
-from openpyxl.styles import Font, Alignment
+from openpyxl.styles import Alignment, Font
 from openpyxl.utils.dataframe import dataframe_to_rows
+from yahooquery import Ticker
 
 from .collect_data import collect_data
 from .config import (
     DEFAULT_KEY_STATISTICS_CHOICES,
     DEFAULT_SUMMARY_DETAIL_CHOICES,
-    SECTOR_CATEGORY_MAPPING,
     EMPTY_RISK_STATISTICS,
     RISK_STATISTICS_CATEGORY_MAPPING,
+    SECTOR_CATEGORY_MAPPING,
 )
-from .utils import data_placer, image_placer, graph_placer
+from .utils import data_placer, graph_placer, image_placer
+
+# pylint: disable=too-many-locals
 
 
 def create_ETF_report(tickers, filename, folder=None):
@@ -31,7 +36,7 @@ def create_ETF_report(tickers, filename, folder=None):
     filename (string)
         The name and location of the file you wish to save the data to.
     folder (string, default is None)
-        If prefered, you can seperate filename and folder.
+        If preferred, you can separate filename and folder.
 
     Output
     ----
@@ -40,7 +45,7 @@ def create_ETF_report(tickers, filename, folder=None):
     workbook = Workbook()
     stock_data = Ticker(tickers, asynchronous=True).history(period="10y")["adjclose"]
     stock_data = stock_data.unstack(level=0)
-    
+
     stock_data.index = pd.to_datetime(stock_data.index)
     stock_data.index = stock_data.index.tz_localize(None)
 
@@ -280,10 +285,8 @@ def create_ETF_report(tickers, filename, folder=None):
         min_col += 1
         max_col += 1
 
-    try:
+    if "Sheet" in workbook:
         workbook.remove(workbook["Sheet"])
-    except KeyError:
-        pass
 
     stock_sheet.sheet_state = "hidden"
     workbook.save(filename)

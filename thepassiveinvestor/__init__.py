@@ -1,4 +1,6 @@
-# Modules
+"""The Passive Investor Initialization"""
+
+# flake8: noqa
 from .create_report import create_ETF_report
 from .collect_data import collect_data
 from .utils import data_placer, graph_placer, image_placer

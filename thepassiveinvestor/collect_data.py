@@ -1,9 +1,12 @@
+"""Data Collection Module"""
 from datetime import datetime
-import pandas as pd
 
+import pandas as pd
 from yahooquery import Ticker
 
 from .config import DEFAULT_KEY_STATISTICS_CHOICES, DEFAULT_SUMMARY_DETAIL_CHOICES
+
+# pylint: disable=too-many-locals,broad-exception-caught
 
 
 def collect_data(tickers, comparison=False, surpress_print=False):
@@ -125,8 +128,8 @@ def collect_data(tickers, comparison=False, surpress_print=False):
             ticker_dataframe = pd.DataFrame.from_dict(
                 {
                     (i, j): ticker_data[ticker][i][j]
-                    for i in ticker_data[ticker].keys()
-                    for j in ticker_data[ticker][i].keys()
+                    for i in ticker_data[ticker]
+                    for j in ticker_data[ticker][i]
                 },
                 orient="index",
                 columns=[ticker],

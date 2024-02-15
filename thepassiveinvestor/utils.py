@@ -1,11 +1,15 @@
+"""Utilities Module"""
+
 import io
 
 import urllib3
-from openpyxl.chart import Reference, LineChart
+from openpyxl.chart import LineChart, Reference
 from openpyxl.chart.axis import DateAxis
 from openpyxl.drawing.image import Image as ExcelImage
 from openpyxl.styles import Alignment, Font
 from openpyxl.styles.numbers import FORMAT_PERCENTAGE_00
+
+# pylint: disable=too-many-locals,broad-exception-caught
 
 
 def data_placer(
@@ -62,15 +66,15 @@ def data_placer(
     for key, value in data.items():
         if value_percentage:
             try:
-                value = float(value[:-1]) / 100
+                value = float(value[:-1]) / 100  # noqa
                 sheet[
                     f"{column_value}{starting_row}"
                 ].number_format = FORMAT_PERCENTAGE_00
             except ValueError:
                 pass
         if key_number:
-            try:
-                key = int(key)
+            try:  # noqa
+                key = int(key)  # noqa
             except ValueError:
                 pass
 
