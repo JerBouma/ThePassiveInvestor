@@ -44,8 +44,8 @@ keywords = [
 [tool.poetry.dependencies]
 python = ">=3.10, <3.13"
 pandas = {extras = ["computation", "performance", "excel"], version = "^2.2"}
-yahooquery = "^2.2"
-urllib3 = "^1.26"
+yahooquery = "^2"
+urllib3 = "^1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.1"
