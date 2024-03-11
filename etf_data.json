@@ -1,0 +1,42 @@
+[
+    {
+        "long_name": "SPDR S&P 500 ETF Trust",
+        "summary": "The Trust seeks to achieve its investment objective by holding a portfolio of the common stocks that are included in the index (the \u201cPortfolio\u201d), with the weight of each stock in the Portfolio substantially corresponding to the weight of such stock in the index."
+    },
+    {
+        "long_name": "Invesco QQQ Trust",
+        "summary": "To maintain the correspondence between the composition and weights of the securities in the trust (the \"securities\") and the stocks in the NASDAQ-100 Index\u00ae, the adviser adjusts the securities from time to time to conform to periodic changes in the identity and/or relative weights of index securities. The composition and weighting of the securities portion of a portfolio deposit are also adjusted to conform to changes in the index."
+    },
+    {
+        "long_name": "Vanguard Total Stock Market Index Fund ETF Shares",
+        "summary": "The fund employs an indexing investment approach designed to track the performance of the index, which represents approximately 100% of the investable U.S. stock market and includes large-, mid-, small-, and micro-cap stocks. It invests by sampling the index, meaning that it holds a broadly diversified collection of securities that, in the aggregate, approximates the full index in terms of key characteristics."
+    },
+    {
+        "long_name": "iShares Russell 2000 ETF",
+        "summary": "The fund generally invests at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index (i.e., depositary receipts representing securities of the underlying index) and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents."
+    },
+    {
+        "long_name": "Vanguard FTSE Developed Markets Index Fund ETF Shares",
+        "summary": "The fund employs an indexing investment approach designed to track the performance of the FTSE Developed All Cap ex US Index, a market-capitalization-weighted index that is made up of approximately 4,006 common stocks of large-, mid-, and small-cap companies located in Canada and the major markets of Europe and the Pacific region. The Advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index."
+    },
+    {
+        "long_name": "iShares Core MSCI EAFE ETF",
+        "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index is designed to measure large-, mid- and small-capitalization equity market performance and includes stocks from Europe, Australasia and the Far East."
+    },
+    {
+        "long_name": "iShares Core U.S. Aggregate Bond ETF",
+        "summary": "The index measures the performance of the total U.S. investment-grade bond market. The fund will invest at least 80% of its assets in the component securities of the underlying index and TBAs that have economic characteristics that are substantially identical to the economic characteristics of the component securities of the underlying index, and the fund will invest at least 90% of its assets in fixed income securities of the types included in the underlying index that the advisor believes will help the fund track the underlying index."
+    },
+    {
+        "long_name": "SPDR\u00a0Gold Shares",
+        "summary": "The Trust holds gold bars and from time to time, issues Baskets in exchange for deposits of gold and distributes gold in connection with redemptions of Baskets. The investment objective of the Trust is for the Shares to reflect the performance of the price of gold bullion, less the Trust\u2019s expenses. The Sponsor believes that, for many investors, the Shares represent a cost-effective investment in gold."
+    },
+    {
+        "long_name": "Vanguard Emerging Markets Stock Index Fund",
+        "summary": "The index measures the investment return of stocks issued by companies located in emerging market countries. The fund employs an indexing investment approach designed to track the performance of the FTSE Emerging Markets All Cap China A Inclusion Index. It invests by sampling the index, meaning that it holds a broadly diversified collection of securities that, in the aggregate, approximates the index in terms of key characteristics."
+    },
+    {
+        "long_name": "Vanguard Total Bond Market Index Fund",
+        "summary": "This index measures the performance of a wide spectrum of public, investment-grade, taxable, fixed income securities in the United States-including government, corporate, and international dollar-denominated bonds, as well as mortgage-backed and asset-backed securities-all with maturities of more than 1 year. All of the fund's investments will be selected through the sampling process, and at least 80% of its assets will be invested in bonds held in the index."
+    }
+]
