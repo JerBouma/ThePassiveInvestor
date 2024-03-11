@@ -1,24 +1,29 @@
-import os
 import json
-import pandas as pd
 from openai import OpenAI
-
+from dotenv import load_dotenv
+import os
 client = OpenAI()
 
-def get_embedding(text, model="text-embedding-ada-002"):
+def get_embedding(text, model="text-embedding-3-small"):
     text = text.replace("\n", " ")
     return client.embeddings.create(input=[text], model=model).data[0].embedding
 
-# Load the JSON data
-with open('paste.txt', 'r') as f:
-    data = json.load(f)
+# Load the JSON data from file
+with open('etf_data.json', 'r') as file:
+    data = json.load(file)
 
-# Convert to DataFrame
-df = pd.DataFrame(data)
+# Generate embeddings for each ETF
+for etf in data:
+    ticker = etf['ticker']
+    long_name = etf['long_name']
+    summary = etf['summary']
+    
+    long_name_embedding = get_embedding(long_name)
+    summary_embedding = get_embedding(summary)
+    
+    etf['long_name_embedding'] = long_name_embedding
+    etf['summary_embedding'] = summary_embedding
 
-# Generate embeddings
-df['long_name_embedding'] = df.long_name.apply(lambda x: get_embedding(x, model='text-embedding-ada-002'))
-df['summary_embedding'] = df.summary.apply(lambda x: get_embedding(x, model='text-embedding-ada-002'))
-
-# Save DataFrame with embeddings
-df.to_csv('etf_data_with_embeddings.csv', index=False)
+# Save the updated data with embeddings to a new JSON file
+with open('etf_data_with_embeddings.json', 'w') as file:
+    json.dump(data, file, indent=4)

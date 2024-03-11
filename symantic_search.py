@@ -1,56 +1,47 @@
 import json
-import openai
 import numpy as np
-from dotenv import load_dotenv
-import os
+from openai import OpenAI
+import thepassiveinvestor as pi
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI()
 
-# Load the data from the JSON file
-with open('etf_data.json', 'r') as file:
-    etf_data = json.load(file)
+def get_embedding(text, model="text-embedding-3-small"):
+    text = text.replace("\n", " ")
+    return client.embeddings.create(input=[text], model=model).data[0].embedding
 
-# Create a list of summaries from the ETF data
-summaries = [etf['summary'] for etf in etf_data]
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
-# Generate embeddings for the summaries using OpenAI API
-embeddings = []
-for summary in summaries:
-    response = openai.Embedding.create(
-        input=summary,
-        model="text-embedding-ada-002"
-    )
-    embedding = response['data'][0]['embedding']
-    embeddings.append(embedding)
+# Load the JSON data with embeddings from file
+with open('etf_data_with_embeddings.json', 'r') as file:
+    data = json.load(file)
 
-# Search through the ETF summaries
-def search_etfs(query, n=3):
-    query_embedding = openai.Embedding.create(
-        input=query,
-        model="text-embedding-ada-002"
-    )['data'][0]['embedding']
+# Get user input
+user_input = input("Enter a description of the investment strategy: ")
 
-    similarities = []
-    for embedding in embeddings:
-        similarity = np.dot(embedding, query_embedding) / (np.linalg.norm(embedding) * np.linalg.norm(query_embedding))
-        similarities.append(similarity)
+# Generate embedding for user input
+user_input_embedding = get_embedding(user_input)
 
-    # Sort ETFs based on similarity scores
-    sorted_indices = np.argsort(similarities)[::-1]
+# Calculate cosine similarity between user input and each ETF
+for etf in data:
+    etf['similarity'] = cosine_similarity(user_input_embedding, etf['summary_embedding'])
 
-    # Print the top n matching ETFs
-    for i in range(n):
-        index = sorted_indices[i]
-        etf = etf_data[index]
-        print(f"Top {i+1} match:")
-        print("Long Name:", etf['long_name'])
-        print("Summary:", etf['summary'])
-        print("Similarity Score:", similarities[index])
-        print()
+# Sort ETFs based on similarity score
+data.sort(key=lambda x: x['similarity'], reverse=True)
 
-# Ask for user input
-user_query = input("Enter your search query: ")
+# # Print top 3 ETF recommendations
+# print("Top 3 ETF Recommendations:")
+# for i in range(3):
+#     print(f"{i+1}. {data[i]['long_name']}")
+#     print(f"{i+1}. {data[i]['summary']}")
+#     print(f"   Similarity Score: {data[i]['similarity']}")
 
-# Search for the most similar ETFs
-search_etfs(user_query)
+# Collect data from a set of ETFs and compare them
+etf_comparison = pi.collect_data([data[1]['ticker'],data[2]['ticker'],data[3]['ticker']], comparison=True)
+
+# Show the comparison
+print(etf_comparison)
+
+# Download Analysis
+etf_report = [data[1]['ticker'],data[2]['ticker'],data[3]['ticker']]
+pi.create_ETF_report(etf_report, 'ETF Report.xlsx')

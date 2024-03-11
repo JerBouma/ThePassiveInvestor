@@ -2,8 +2,7 @@ import thepassiveinvestor as pi
 import json
 
 # List of random tickers
-etf_tickers = ['SPY', 'QQQ', 'VTI', 'IWM', 'VEA', 'IEFA', 'AGG', 'GLD', 'VWO', 'BND']
-
+etf_tickers = ['QVAL', 'IVAL', 'VLUE', 'QUAL', 'IQLT', 'FQAL']
 
 # Initialize an empty list to store the data
 etf_strat = []
@@ -12,6 +11,7 @@ etf_strat = []
 for ticker in etf_tickers:
     etf_data = pi.collect_data(ticker)
     item = {
+        "ticker": ticker,
         "long_name": etf_data["long_name"],
         "summary": etf_data["summary"]
     }

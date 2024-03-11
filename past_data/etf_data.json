@@ -1,0 +1,58 @@
+[
+    {
+        "long_name": "Alpha Architect U.S. Quantitative Value ETF",
+        "summary": "The Adviser employs a multi-step, quantitative, rules-based methodology to identify a portfolio of approximately 50 to 200 undervalued U.S. equity securities with the potential for capital appreciation. A security is considered to be undervalued when it trades at a price below the price at which the Adviser believes it would trade if the market reflected all factors relating to the company\u2019s worth. The fund may also invest up to 20% of its assets in cash and cash equivalents, other investment companies, as well as securities and other instruments."
+    },
+    {
+        "long_name": "Alpha Architect International Quantitative Value ETF",
+        "summary": "The Adviser employs a multi-step, quantitative, rules-based methodology to identify a portfolio of approximately 50 to 200 undervalued international equity securities with the potential for capital appreciation. A security is considered to be undervalued when it trades at a price below the price at which the Adviser believes it would trade if the market reflected all factors relating to the company\u2019s worth. The fund may also invest up to 20% of its assets in cash and cash equivalents, other investment companies, as well as securities and other instruments."
+    },
+    {
+        "long_name": "iShares MSCI USA Value Factor ETF",
+        "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. The index is based on a traditional market capitalization-weighted parent index, the MSCI USA Index (the \"parent index\"). The parent index includes U.S. large- and mid- capitalization stocks."
+    },
+    {
+        "long_name": "iShares MSCI USA Quality Factor ETF",
+        "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. The index is based on a traditional market capitalization-weighted parent index, the MSCI USA Index."
+    },
+    {
+        "long_name": "iShares MSCI Intl Quality Factor ETF",
+        "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index measures the performance of international developed large- and mid-capitalization stocks exhibiting relatively higher quality characteristics as identified through three fundamental variables: return on equity, earnings variability and debt-to-equity."
+    },
+    {
+        "long_name": "Fidelity Quality Factor ETF",
+        "summary": "The fund normally invests at least 80% of assets in securities included in the Fidelity U.S. Quality Factor Index?, which is designed to reflect the performance of stocks of large and mid-capitalization U.S. companies with a higher quality profile than the broader market. It invests in lending securities to earn income for the fund."
+    },
+    {
+        "long_name": "FlexShares Quality Dividend Index Fund",
+        "summary": "The underlying index is designed to reflect the performance of a selection of companies that, in aggregate, provide exposure to a high-quality income-oriented universe of long-only U.S. equity securities, with an emphasis on long-term capital growth and a targeted overall beta that is similar to that of the Northern Trust 1250 Index (the \u201cparent index\u201d), a float-adjusted market-capitalization weighted index of U.S. domiciled large- and mid-capitalization companies."
+    },
+    {
+        "long_name": "WisdomTree U.S. Quality Dividend Growth Fund",
+        "summary": "Under normal circumstances, at least 80% of the fund's total assets (exclusive of collateral held from securities lending) will be invested in component securities of the index and investments that have economic characteristics that are substantially identical to the economic characteristics of such component securities. The index is a fundamentally weighted index that consists of dividend-paying U.S. common stocks with growth characteristics. The fund is non-diversified."
+    },
+    {
+        "long_name": "WisdomTree U.S. SmallCap Quality Dividend Growth Fund",
+        "summary": "The index is a fundamentally weighted index that consists of the small-capitalization segment of dividend-paying U.S. common stocks with growth characteristics. Under normal circumstances, at least 80% of the fund's total assets (exclusive of collateral held from securities lending) will be invested in component securities of the index and investments that have economic characteristics that are substantially identical to the economic characteristics of such component securities. It is non-diversified."
+    },
+    {
+        "long_name": "Fidelity Low Volatility Factor ETF",
+        "summary": "The fund normally invests at least 80% of assets in securities included in the Fidelity U.S. Low Volatility Factor Index?, which is designed to reflect the performance of stocks of large and mid-capitalization U.S. companies with lower volatility than the broader market. It invests in lending securities to earn income for the fund."
+    },
+    {
+        "long_name": "Fidelity Momentum Factor ETF",
+        "summary": "The fund normally invests at least 80% of assets in securities included in the Fidelity U.S. Momentum Factor Index?, which is designed to reflect the performance of stocks of large and mid-capitalization U.S. companies that exhibit positive momentum signals. It invests in lending securities to earn income for the fund."
+    },
+    {
+        "long_name": "Fidelity High Yield Factor ETF",
+        "summary": "The fund normally invests at least 80% of its assets in debt securities rated below investment grade (also referred to as high yield debt securities or junk bonds). The advisor uses the ICE\u00ae BofA\u00ae BB-B US High Yield Constrained Index as a guide in structuring the fund and selecting its investments as it relates to credit quality distribution and risk characteristics. The fund normally invests primarily in securities rated BB or B by S&P, Ba or B by Moody's, comparably rated by at least one nationally recognized credit rating agency, or, if unrated, considered by FMR to be of comparable quality."
+    },
+    {
+        "long_name": "First Trust Dorsey Wright Focus 5 ETF",
+        "summary": "The fund will normally invest at least 90% of its net assets (including investment borrowings) in the exchange-traded funds (\"ETFs\") that comprise the index. The index is designed to provide targeted exposure to the five First Trust sector-based ETFs that the index provider believes offer the greatest potential to outperform the other ETFs in the selection universe and that satisfy certain trading volume and liquidity requirements."
+    },
+    {
+        "long_name": "Schwab Fundamental U.S. Large Company Index ETF",
+        "summary": "The fund normally will invest at least 90% of its net assets (including, for this purpose, any borrowings for investment purposes) in stocks included in the index. The index measures the performance of the large company size segment by fundamental overall company scores (scores), which are created using as the universe the U.S. companies in the FTSE Global Total Cap Index (the parent index)."
+    }
+]
